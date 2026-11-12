@@ -1,0 +1,27 @@
+{
+  "id": "./",
+  "name": "AI Work Assistant v12 — PUBLIC MOCK (No Save)",
+  "short_name": "AI Work v12",
+  "description": "ต้นแบบ F1–F4 สำหรับ GitHub Pages ใช้ข้อมูลสมมติเท่านั้น ไม่บันทึกหรือส่งข้อมูลจริง",
+  "lang": "th",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#F5F7FB",
+  "theme_color": "#121E3C",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "./icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "./icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
