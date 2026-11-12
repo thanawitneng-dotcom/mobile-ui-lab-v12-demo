@@ -1,0 +1,838 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data: 'self'; connect-src 'none'; manifest-src 'self'; worker-src 'self'; form-action 'none'; object-src 'none'; base-uri 'none'" />
+<meta name="theme-color" content="#111e3a" />
+<meta name="application-name" content="AI Work Assistant v12" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+<meta name="apple-mobile-web-app-title" content="AI Work v12" />
+<meta name="robots" content="noindex,nofollow,noarchive" />
+<meta name="description" content="Mobile UI Lab ทดลองจดและวางแผนเข้าพบด้วยข้อมูลสมมติเท่านั้น ไม่มีการซิงก์ข้อมูลจริง" />
+<link rel="manifest" href="./manifest.webmanifest" />
+<link rel="icon" type="image/png" sizes="192x192" href="./icons/icon-192.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="./icons/apple-touch-icon.png" />
+<title>Mobile UI Lab — Zero Cost | MOCK ONLY v12 F1+F2+F3+F4</title>
+<style>
+:root{--navy:#121e3c;--blue:#4365e9;--lav:#eee9f8;--paper:#f5f7fb;--ink:#202b47;--muted:#63708a;--line:#e0e6f0;--mint:#0a846d;--orange:#a46319;--radius:18px;font-family:-apple-system,BlinkMacSystemFont,"Thonburi","Sukhumvit Set",system-ui,sans-serif;color:var(--ink)}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:#eaf0f9}button,input,textarea{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid #adbcfa;outline-offset:2px}
+.shell{max-width:460px;min-height:100dvh;margin:auto;background:var(--paper);box-shadow:0 20px 60px #1a2d5212;position:relative;padding-bottom:calc(92px + env(safe-area-inset-bottom))}
+.head{background:linear-gradient(145deg,#0f1c3b,#273d79);color:white;padding:calc(23px + env(safe-area-inset-top)) 20px 25px;border-radius:0 0 26px 26px}
+.brandline{display:flex;align-items:center;gap:8px;font-size:11px;letter-spacing:.09em;font-weight:750;opacity:.9}.spark{background:#6984ff33;border:1px solid #a0b2ff55;padding:5px 8px;border-radius:9px}
+.head h1{font-size:25px;line-height:1.22;margin:18px 0 5px;letter-spacing:-.04em}.head p{font-size:13px;line-height:1.6;color:#c5d1f9;margin:0}
+.chips{display:flex;gap:7px;flex-wrap:wrap;margin-top:16px}.chip{font-size:10px;font-weight:750;border:1px solid #7285be75;border-radius:999px;padding:6px 9px;color:#e7eeff}.chip.safe{color:#b4ffe5;border-color:#54bd9a80}
+.main{padding:18px 17px}.screen{display:none}.screen.active{display:block}.titleline{display:flex;align-items:center;justify-content:space-between;gap:6px;margin:5px 2px 13px}.titleline h2{font-size:19px;margin:0;letter-spacing:-.02em}.step{font-size:11px;color:var(--blue);font-weight:750}
+.card{background:white;border:1px solid var(--line);border-radius:var(--radius);box-shadow:0 2px 10px #20315506;padding:16px;margin-bottom:13px}.label{display:flex;align-items:center;gap:7px;font-size:12px;font-weight:750;color:#53617a;margin-bottom:9px}.sub{font-size:11px;color:var(--muted);line-height:1.5}.textarea,.field,.searchinput{width:100%;border:1px solid #d7dfec;background:#f9fbfe;border-radius:12px;padding:12px;color:var(--ink);font-size:14px;line-height:1.65;outline:none}.textarea{min-height:222px;resize:vertical}.textarea:focus,.field:focus,.searchinput:focus{border-color:#8ca3ff;background:#fff}.field{min-height:44px}.samples{display:flex;gap:7px;flex-wrap:wrap;margin:10px 0 0}.sample{border:1px solid #dfe5f2;background:#f8faff;border-radius:10px;padding:8px 10px;color:#455574;font-size:11px;font-weight:700}.sample.selected{border-color:#9eb1ff;background:#eaf0ff;color:#304dbc}
+.btn{border:0;border-radius:13px;padding:13px 14px;display:inline-flex;align-items:center;justify-content:center;gap:7px;font-size:13px;font-weight:800}.primary{background:var(--blue);color:white;width:100%}.secondary{background:#edf1ff;color:#334eb2}.outline{background:white;border:1px solid #d7dfee;color:#41516b}.actions{display:flex;gap:8px;flex-wrap:wrap}.actions .btn{flex:1}.actionstack{display:grid;gap:9px}.mutedbox{background:#f2f4f9;border:1px solid #e5e9f3;border-radius:12px;padding:11px 12px;font-size:12px;line-height:1.6;color:#53617c}
+.row{display:flex;gap:9px;align-items:flex-start}.dot{width:9px;height:9px;border-radius:50%;background:var(--mint);flex:none;margin-top:7px}.dot.warn{background:#d99b40}.note{font-size:12px;line-height:1.55}.metric{display:flex;justify-content:space-between;gap:10px;font-size:12px;color:#5b6881;margin-bottom:10px}.metric strong{color:#1f2d4c}.fieldblock{margin:0 0 12px}.fieldblock .label{margin-bottom:6px}.flags{display:flex;gap:6px;flex-wrap:wrap;margin:0 0 11px}.flag{font-size:10px;font-weight:750;border-radius:7px;padding:5px 7px;background:#eff2f8;color:#58657c}.flag.warn{background:#fff3df;color:#975d13}.flag.good{background:#e0f5ed;color:#146e56}
+.summary{white-space:pre-wrap;font-size:13px;line-height:1.8;background:#f7f9fd;border:1px dashed #cdd7e9;border-radius:12px;padding:13px}.notice{border-left:3px solid #d99b40;background:#fff8ed;padding:11px 13px;border-radius:8px;font-size:11px;line-height:1.6;color:#805820;margin-bottom:12px}.listbox{display:grid;gap:10px}.item{background:white;border:1px solid var(--line);padding:14px;border-radius:14px}.itemhead{display:flex;align-items:center;justify-content:space-between;gap:8px}.itemhead strong{font-size:13px}.itemhead small{font-size:10px;color:#65748c}.item p{font-size:11px;color:#526079;line-height:1.6;margin:7px 0 0}.hint{font-size:11px;color:#7b879c;margin:8px 1px;line-height:1.6}.empty{padding:28px 10px;text-align:center;color:#6b7892;font-size:12px}
+.footerbar{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(460px,100%);display:flex;background:#fff;border-top:1px solid #dde4f0;padding:9px 8px calc(10px + env(safe-area-inset-bottom));box-shadow:0 -5px 20px #28375d12;z-index:10}.tab{flex:1;border:0;background:transparent;color:#8792a6;font-weight:750;display:flex;gap:4px;align-items:center;justify-content:center;flex-direction:column;border-radius:12px;padding:7px 0;font-size:10px;min-height:51px}.tab .ico{font-size:20px}.tab.active{background:#eaf0ff;color:#3555ce}
+.toast{position:fixed;left:50%;bottom:calc(84px + env(safe-area-inset-bottom));transform:translateX(-50%);background:#1e3158;color:#fff;padding:10px 17px;border-radius:11px;font-size:12px;box-shadow:0 9px 32px #122b5b3d;max-width:92%;z-index:99;display:none;text-align:center}.pastebox{display:none;position:fixed;inset:0;background:#0b1630bb;z-index:20;padding:20px;align-items:center;justify-content:center}.pasteinner{background:white;border-radius:19px;padding:20px;width:min(460px,100%)}.pasteinner textarea{height:220px}
+@media(min-width:650px){.shell{margin:30px auto;border-radius:28px;overflow:hidden;min-height:810px;border:1px solid #e0e5ef}.head{padding-top:27px}.footerbar{bottom:0;border-radius:15px 15px 0 0}}
+
+/* v2 additions: minimum comfortable touch targets, 3-screen compact review */
+button{min-height:44px}.sample{min-height:44px}.mini{width:100%;margin:-3px 0 15px}
+.person-card{padding:13px;margin:0 0 12px;background:#f8faff;border:1px solid #e4e9f3;border-radius:13px}
+.person-card .field{background:white}.person-card .hint{white-space:pre-wrap;overflow-wrap:anywhere}
+.warning-row{margin:0 0 6px}.sourcebox{overflow-wrap:anywhere;white-space:pre-wrap;margin-top:12px}
+.editarea{resize:vertical;min-height:85px;display:block}.word-count{font-size:11px;color:#556682}
+.reviewstatus{font-size:11px;font-weight:750;color:#4359aa;padding:5px 8px;background:#f0f2ff;border-radius:8px}
+@media(max-width:340px){.main{padding:12px}.card{padding:12px}.head{padding-left:14px;padding-right:14px}.head h1{font-size:23px}.tab{font-size:9px}}
+@media(prefers-reduced-motion: reduce){*,*:before,*:after{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+
+/* v3 review check and privacy */
+.checkrow{display:flex;align-items:flex-start;gap:10px;font-size:12px;line-height:1.5;border-bottom:1px solid #edf0f5;padding:10px 0;color:#293b5b}
+.checkrow:last-of-type{border-bottom:0}.checkrow input{width:20px;height:20px;margin:0;flex:none;accent-color:#4465e9}
+.danger{background:#fff1f0;color:#a43136;border:1px solid #f5c8c7}.mutedbox b{font-weight:800}
+@supports (-webkit-touch-callout: none){input,textarea{font-size:16px!important}}
+@media (prefers-contrast: more){.field,.textarea,.searchinput{border-color:#465675}.sub,.hint{color:#465675}}
+/* v4: correct source/draft lifecycle and mobile editing */
+.source-status{margin:10px 0 3px;border-left:3px solid #9daef2;background:#edf1fc;padding:9px 11px;color:#415273;font-size:12px;line-height:1.5;border-radius:8px}
+@media(max-width:600px){.textarea,.field,.searchinput{font-size:16px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+/* v12: visual-only Review Radar, no external data or side effects */
+.radar{background:linear-gradient(145deg,#edf2ff,#f8faff);border-color:#c9d6f4}
+.radar-title{display:flex;align-items:center;justify-content:space-between;gap:7px;flex-wrap:wrap;font-weight:800;font-size:14px;margin-bottom:10px}
+.radar-pills{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:9px}
+.radar-pill{background:white;border:1px solid #cedaf5;border-radius:999px;font-size:11px;color:#364b79;font-weight:700;padding:5px 9px}
+.radar-pill.warn{background:#fff3e4;color:#986023;border-color:#f0d2a5}
+.radar-segment{background:white;border:1px solid #d7e0f1;border-radius:12px;padding:12px;margin:10px 0}
+.radar-segment h3{font-size:13px;margin:0 0 8px}
+.radar-slice{font-size:11px;line-height:1.55;color:#42526d;white-space:pre-wrap;overflow-wrap:anywhere;background:#f6f8fd;padding:9px;border-radius:9px;margin:8px 0}
+.radar-line{font-size:11px;line-height:1.6;margin:5px 0}
+.radar-status{font-size:12px;color:#6b4930;background:#fff1de;border-radius:8px;padding:9px;line-height:1.55;margin:6px 0}
+.radar .btn{font-size:12px;min-height:44px;width:100%}
+/* v9: start directly on mock planner; v8 data and writer restrictions preserved */
+/* v8: a fourth, offline mock-only customer visit planner */
+.planner-status{background:#e8f5f0;color:#12684f;border:1px solid #b9dfd1;padding:9px 11px;border-radius:11px;font-size:12px;line-height:1.5;margin-bottom:13px}
+.planner-controls{display:flex;align-items:center;gap:8px}.planner-controls .btn{min-width:44px;flex:none;padding:10px}.planner-controls input[type=date]{width:100%;min-width:0;font-size:16px;color:var(--ink)}
+.planner-count{font-size:12px;color:var(--muted);margin:4px 0 11px}.visit-list{display:grid;gap:9px}
+.visit-card{width:100%;text-align:left;border:1px solid var(--line);border-radius:15px;padding:12px;background:white;color:var(--ink);display:block;line-height:1.4}
+.visit-card[aria-pressed=true]{background:#eef2ff;border-color:#859df1;box-shadow:0 0 0 1px #859df199}
+.visit-card-top{display:flex;gap:10px;align-items:flex-start;justify-content:space-between}.visit-card-title{font-size:14px;font-weight:800}.visit-time{font-size:11px;white-space:nowrap;font-weight:800;color:#3654bb}
+.visit-meta{font-size:11px;color:var(--muted);margin-top:7px;line-height:1.55}.planner-tags{display:flex;gap:6px;flex-wrap:wrap;margin:9px 0 0}.planner-tags span{font-size:10px;color:#3f58ae;background:#edf1ff;border-radius:7px;padding:5px 7px}
+.planner-detail h3{font-size:16px;margin:0 0 8px}.planner-data{margin:8px 0 12px;display:grid;gap:9px}.planner-data dl{margin:0;border-bottom:1px solid #edf0f6;padding:0 0 9px}.planner-data dt{font-size:10px;color:var(--muted);font-weight:750}.planner-data dd{font-size:12px;color:#2a3b5c;margin:3px 0 0;line-height:1.6;overflow-wrap:anywhere}
+.visit-topic{font-size:12px;line-height:1.65;padding:10px;border-radius:11px;background:#f7f9ff;margin:8px 0}
+.visit-topic strong{display:block;color:#263b68;margin-bottom:3px}.planner-detail .actionstack{margin-top:14px}
+.planner-warning{border-left:3px solid #d89c45;background:#fff7ea;padding:10px 12px;border-radius:10px;font-size:11px;line-height:1.6;margin-bottom:13px}
+.footerbar .tab{min-width:0}.footerbar .tab .ico{font-size:19px}.footerbar .tab{font-size:10px}
+@media(max-width:340px){.footerbar{padding-left:2px;padding-right:2px}.footerbar .tab{font-size:9px}.head h1{font-size:22px}}
+/* v12 F1: offline mock text-input workflow; relies exclusively on OS keyboard dictation */
+.voice-card{border:1px solid #ccdaf5;background:linear-gradient(150deg,#ecf2ff,#fff);padding:15px}
+.voice-badge{display:inline-block;background:#dce8ff;color:#3452a4;border-radius:999px;padding:5px 9px;font-size:11px;font-weight:800}
+.voice-head{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-bottom:9px}
+.voice-card h3{font-size:16px;margin:0;color:#273c68}
+.voice-step{font-size:12px;line-height:1.7;color:#4f5e7d;margin:5px 0 12px}
+.voice-input{min-height:120px;background:#fff}
+.voice-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+.voice-actions .btn{width:100%;font-size:12px;min-height:48px}
+.voice-actions .voice-full{grid-column:span 2}
+.voice-status{background:#f3f6fe;border:1px solid #dbe3f6;border-radius:11px;margin-top:11px;padding:10px;font-size:12px;line-height:1.65;color:#415472;white-space:pre-line}
+.voice-status.warn{background:#fff4e7;border-color:#f2d1aa;color:#82551f}
+.voice-privacy{color:#5a6478;font-size:11px;line-height:1.55;margin-top:10px}
+@media(max-width:340px){.voice-actions{grid-template-columns:1fr}.voice-actions .voice-full{grid-column:span 1}}
+/* v12 F3+F4: local-only planner prep and draft handoff */
+.prep-card{margin:10px 0;background:#f0f8f5;border:1px solid #cee7dc;padding:11px 12px;border-radius:12px}
+.prep-card .checkrow{margin:0;color:#2f4e45;border-bottom-color:#d6e7df}
+.prep-status{color:#1f6b51;font-weight:750;font-size:12px;line-height:1.5;margin-bottom:7px}
+.prep-card .btn{margin-top:8px;width:100%}
+.handoff-card{background:#f7f4ff;border-color:#ded5f5}
+.handoff-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.handoff-actions .btn{width:100%;font-size:12px;min-height:48px;line-height:1.4}
+@media(max-width:340px){.handoff-actions{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="shell">
+<header class="head">
+ <div class="brandline"><span class="spark">✦</span> MOBILE UI LAB <span style="opacity:.55">/ v12 ALL PHASES MOCK</span></div>
+ <h1>จดครั้งเดียว<br>แยกข้อมูลเป็นระบบ</h1>
+ <p>จากข้อความหรือ Dictation สู่ข้อมูลทดลองที่ตรวจทานก่อนใช้</p>
+ <div class="chips"><span class="chip safe">● ZERO API COST</span><span class="chip">MOCK / READ-ONLY</span><span class="chip">NO SYNC</span></div>
+</header>
+<main class="main">
+ <section id="capture" class="screen" aria-label="หน้ารับข้อมูล">
+  <div class="titleline"><h2>📝 รับบันทึกการเข้าพบ</h2><span class="step">01 / 04</span></div>
+  <div class="card">
+   <div class="label">ข้อความจากการพิมพ์หรือพูด</div>
+   <div class="voice-card" id="voiceCapturePanel" aria-label="Smart Voice Capture — ข้อความจากแป้นพิมพ์">
+    <div class="voice-head"><h3>🎙️ Smart Voice Capture</h3><span class="voice-badge">F1 • MOCK</span></div>
+    <p class="voice-step"><b>1.</b> แตะช่องด้านล่าง แล้วกดไมโครโฟนที่<b>คีย์บอร์ด iPhone</b> เพื่อพูดทีละช่วง<br><b>2.</b> ตรวจคำที่ถอดแล้วกด <b>เพิ่มช่วงลงบันทึก</b><br><b>3.</b> เพิ่มช่วงถัดไป แล้วกด <b>แยกข้อมูล</b> ตามปกติ</p>
+    <label class="label" for="voiceChunk">ข้อความช่วงที่กำลังพูด/พิมพ์ (ยังไม่เพิ่ม)</label>
+    <textarea id="voiceChunk" class="textarea voice-input" spellcheck="false" placeholder="ทดลองพูด: โรงพยาบาลทุ่งดาว พบคุณดารา คุยเรื่อง Ketone ..." aria-describedby="voicePrivacy"></textarea>
+    <div class="metric" style="margin-top:8px"><span>ตรวจคำผิดก่อนเพิ่มทุกครั้ง</span><span class="word-count" id="voiceChunkLength">0 ตัวอักษร</span></div>
+    <div class="voice-actions">
+     <button class="btn primary voice-full" type="button" id="appendVoiceChunk">＋ เพิ่มช่วงลงบันทึก</button>
+     <button class="btn secondary" type="button" id="focusVoiceChunk">⌨️ เปิดคีย์บอร์ด</button>
+     <button class="btn outline" type="button" id="undoVoiceChunk">↶ ย้อนคืนช่วงล่าสุด</button>
+     <button class="btn outline" type="button" id="mockVoiceSample">🧪 เติมตัวอย่างพูด</button>
+     <button class="btn outline" type="button" id="newVoiceSession">เริ่มบันทึกว่าง</button>
+    </div>
+    <div id="voiceCaptureStatus" class="voice-status" role="status" aria-live="polite">[รอข้อมูล] ยังไม่มีช่วงพูดใหม่ในรอบนี้</div>
+    <p class="voice-privacy" id="voicePrivacy">🔒 ใช้ระบบ Dictation ที่คีย์บอร์ดของ iPhone ไม่เปิดไมโครโฟนผ่านเว็บ ไม่อัดเสียง ไม่เก็บข้อมูลถาวรและไม่ส่งไป CRM/Nexora • โปรดใช้ข้อมูลสมมติเท่านั้น (การประมวลผล Dictation ของ iPhone เป็นไปตามการตั้งค่าของ Apple)</p>
+   </div>
+   <label class="label" for="noteText" style="margin-top:13px">ข้อความรวมสำหรับแยกข้อมูล (แก้ไขได้)</label>
+   <textarea id="noteText" class="textarea" spellcheck="false" aria-label="บันทึกข้อความ"></textarea>
+   <div class="metric" style="margin:8px 0 0"><span>🎙️ ใช้ไมโครโฟนบนคีย์บอร์ด iPhone — ไม่บันทึกเสียงเอง</span><span class="word-count" id="noteLength">0 ตัวอักษร</span></div>
+   <div class="source-status" id="sourceStatus" role="status" aria-live="polite">ข้อมูลทดลองยังไม่ได้วิเคราะห์</div>
+   <button type="button" class="btn outline" id="clearInput" style="margin-top:10px">ล้างข้อความทดลอง</button>
+   <div class="label" style="margin-top:14px">ทดสอบข้อมูลสมมติ</div>
+   <div class="samples"><button class="sample selected" data-sample="a">เคสครบ</button><button class="sample" data-sample="b">ชื่อคล้าย</button><button class="sample" data-sample="c">ปฏิเสธงาน</button><button class="sample" data-sample="d">หลายคน</button><button class="sample" data-sample="e">หลาย รพ.</button><button class="sample" data-sample="f">บันทึกยาว</button><button class="sample" data-sample="g">งานถูกปฏิเสธ</button></div>
+  </div>
+  <div class="card">
+   <div class="row"><span class="dot"></span><div class="note"><b>ขอบเขตการทดลอง</b><br>แยกข้อมูลด้วยกฎคำศัพท์จำลองในเครื่องเท่านั้น ไม่ใช่โมเดล AI และไม่ยืนยันชื่อโรงพยาบาลจากฐานจริง</div></div>
+  </div>
+  <button class="btn primary" id="analyze">แยกข้อมูล → ตรวจสอบ  <span aria-hidden="true">➜</span></button>
+ </section>
+ <section id="review" class="screen" aria-label="หน้าตรวจสอบ">
+  <div class="titleline"><h2>✅ ตรวจสอบก่อนใช้</h2><span class="step">02 / 04</span></div>
+  <div class="notice">นี่คือผลแยกด้วย Rule-based DEMO ชื่อบุคคล/หน่วยงานต้องตรวจจากแหล่งที่เชื่อถือได้ก่อนนำไปใช้จริง</div>
+  <div class="metric"><span class="reviewstatus" id="reviewState">DRAFT</span><span>🔒 ไม่ส่งข้อมูลใด ๆ</span></div>
+  <div class="card radar" id="smartReviewRadar" aria-live="polite" aria-label="Smart Review Radar">
+   <div class="radar-title"><span>🧭 Smart Review Radar (v12)</span><span class="flag warn">MOCK / UNVERIFIED</span></div>
+   <div id="radarContent" class="hint">กรุณากดแยกข้อความตัวอย่างก่อน ระบบจะแสดงความเสี่ยงและข้อความตามช่วงให้ตรวจทาน</div>
+  </div>
+  <div class="card" id="reviewFields"><div class="empty">กรอกข้อความและกด “แยกข้อมูล” ที่หน้ารับบันทึกก่อน</div></div>
+  <div class="card" aria-label="การยืนยันตรวจทานแบบ Mock"><div class="label">รายการตรวจทานก่อนทำเครื่องหมาย</div>
+    <label class="checkrow"><input type="checkbox" id="confirmSource" /> ฉันอ่านข้อความต้นฉบับและแยกหัวข้อครบแล้ว</label>
+    <label class="checkrow"><input type="checkbox" id="confirmNames" /> ฉันตรวจชื่อโรงพยาบาล คน ตำแหน่งและแผนกแล้ว</label>
+    <label class="checkrow"><input type="checkbox" id="confirmTasks" /> ฉันตรวจงาน/คำปฏิเสธและวันเวลาที่ไม่ได้แปลงเป็นวันที่แล้ว</label>
+    <label class="checkrow"><input type="checkbox" id="confirmMock" /> ข้อมูลนี้เป็นข้อมูลสมมติสำหรับทดสอบเท่านั้น</label>
+    <div class="hint">ติ๊กครบแล้วกดตรวจทานได้ ไม่ใช่การอนุมัติข้อมูลจริง</div>
+  </div>
+  <div class="card"><div class="label">สรุปแบบ DRAFT</div><div class="summary" id="summary">[รอข้อมูล]</div></div>
+  <div class="card handoff-card" id="handoffPanel" aria-label="ChatGPT Handoff เฉพาะ Draft สมมติ">
+   <div class="label">📦 ChatGPT Handoff — F4</div>
+   <div class="hint">เลือกประเภทข้อความคัดลอก โดยยังไม่ส่งหรือบันทึกข้อมูลจริง • หลายโรงพยาบาลต้องแยกบันทึกก่อน</div>
+   <div class="handoff-actions">
+    <button type="button" class="btn secondary" id="copyDayflowDraft">🏥 DAYFLOW Draft</button>
+    <button type="button" class="btn outline" id="copyNextMoveDraft">🔥 NEXT MOVE Draft</button>
+   </div>
+   <div class="hint" id="handoffStatus" aria-live="polite">[รอข้อมูล] กดแยกข้อมูลและตรวจทานก่อนคัดลอก</div>
+  </div>
+  <div class="actionstack">
+    <button class="btn outline" id="editSource">↶ กลับไปแยก/แก้ข้อความต้นฉบับ</button>
+    <button class="btn outline" id="markReviewed">✓ ทำเครื่องหมายตรวจทานแล้ว (Mock เท่านั้น)</button>
+    <button class="btn primary" id="copySummary">📄 คัดลอกสรุปอ่านง่าย</button>
+    <button class="btn outline" id="previewDriveSave">🔎 ดูตัวอย่างก่อนบันทึกลง Drive (ไม่บันทึกจริง)</button>
+    <button class="btn secondary" id="copyForChatGPT" style="width:100%">📋 คัดลอกข้อมูลสำหรับ ChatGPT</button><div class="actions"><button class="btn outline" id="addTemp" style="width:100%">เพิ่มแฟ้มทดลองชั่วคราว</button></div>
+  </div>
+  <div class="hint"><b>📋 คัดลอกข้อมูลสำหรับ ChatGPT</b> = เตรียมข้อความพร้อมข้อมูลแบบ JSON ภายในให้พร้อมวางในแชตด้วยตนเอง (ไม่ส่ง ChatGPT อัตโนมัติ) • ไม่แนบข้อความต้นฉบับเต็ม • ไม่บันทึก CRM, DAYFLOW, TO-DO, Calendar หรือ Nexora</div>
+ </section>
+ <section id="search" class="screen" aria-label="หน้าค้นหา">
+  <div class="titleline"><h2>🔎 ค้นหาบันทึก</h2><span class="step">03 / 04</span></div>
+  <div class="card"><div class="label">ค้นหาจากชื่อโรงพยาบาล บุคคล สินค้า หรืองาน</div><input id="searchText" class="searchinput" type="search" placeholder="ลองค้นหา: Ketone, คุณดารา, PO" autocomplete="off" /><div class="hint">แสดงเฉพาะรายการสมมติ และรายการที่เพิ่มในหน้านี้เท่านั้น</div></div>
+  <div class="metric"><span>แฟ้มทดลองในหน่วยความจำชั่วคราว</span><strong id="resultCount">3 รายการ</strong></div><button class="btn outline" style="width:100%;margin:0 0 12px" id="clearTemp">ล้างเฉพาะรายการ TEMP (ไม่แตะตัวอย่าง DEMO)</button>
+  <div class="listbox" id="results"></div><button class="btn danger" style="width:100%;margin:16px 0 0" id="resetAll">ล้างข้อมูลทดลองทั้งหมดในหน้านี้</button>
+  <div class="card" style="margin-top:14px"><div class="row"><span class="dot warn"></span><div class="note"><b>ไม่ใช่ฐานค้นย้อนหลังจริง</b><br>ปิดหรือรีเฟรชหน้าแล้วรายการที่เพิ่มจะหายไป ไม่มี localStorage, Database, Cloud และ Auto-save</div></div></div>
+ </section>
+
+ <section id="planner" class="screen active" aria-label="หน้าวางแผนเข้าพบลูกค้า">
+  <div class="titleline"><h2>🏥 แผนเข้าพบลูกค้า</h2><span class="step">04 / 04</span></div>
+  <div class="planner-status" style="background:#edf4ff;border-color:#d2def9;color:#263f76" role="note">📲 <b>Web App สำหรับทดสอบเท่านั้น</b> • เปิดผ่าน Safari แบบ HTTPS → แชร์ → Add to Home Screen → Open as Web App • ยังไม่มีการบันทึกลงระบบจริง</div>
+  <div class="planner-status" role="status">🧪 <b>ข้อมูลสมมติ 100%</b> • ไม่มีการอ่าน Google Calendar, CRM, TO-DO หรือ Nexora • ไม่มีแผนเข้าพบจริง • เปิดทดสอบแล้วกดเลือกการ์ดได้เลย</div>
+
+  <details class="card" id="deviceCheckCard" style="margin-top:12px">
+   <summary style="font-size:14px;font-weight:700;cursor:pointer">📲 ตรวจความพร้อมบน iPhone / Home Screen</summary>
+   <div class="hint">ตรวจเงื่อนไขของเบราว์เซอร์ที่เปิดอยู่นี้เท่านั้น ไม่ใช่การรับรอง Safari หรือการติดตั้งจริง</div>
+   <button type="button" class="btn outline" id="runDeviceCheck" style="width:100%">ตรวจสภาพแวดล้อมตอนนี้</button>
+   <div id="deviceCheckResults" role="status" aria-live="polite" class="mutedbox" style="white-space:pre-line;margin-top:10px">ยังไม่ได้ตรวจ</div>
+   <div class="hint">ถ้าเปิดจาก ChatGPT / Files แล้ว JavaScript ไม่ทำงาน ต้องใช้ HTTPS URL ที่ Deploy และผ่านอนุมัติแล้ว จึงตรวจ PWA / Offline ได้ครบ</div>
+  </details>
+  <div class="card">
+   <label class="label" for="planDate">📅 เลือกวันที่วางแผน (จำลอง)</label>
+   <div class="planner-controls"><button type="button" class="btn outline" id="planPrevDay" aria-label="ก่อนหน้า 1 วัน">‹</button><input id="planDate" class="field" type="date" value="2026-11-11" min="2026-01-01" max="2028-12-31"/><button type="button" class="btn outline" id="planNextDay" aria-label="ถัดไป 1 วัน">›</button></div>
+   <div class="hint">ลองวันที่ 11 หรือ 12 พ.ย. 2569 — วันที่อื่นจะแสดง “ไม่มีนัดหมายจำลอง” ไม่ใช่การตรวจปฏิทินจริง</div>
+   <label class="label" for="planSearch" style="margin-top:12px">🔎 ค้นหาในแผนจำลองของวันที่เลือก</label>
+   <input id="planSearch" class="searchinput" type="search" placeholder="ชื่อโรงพยาบาล / สินค้า / ผู้ติดต่อ" autocomplete="off" />
+  </div>
+  <div class="metric" style="margin-bottom:10px"><span>รายการนัดหมายตัวอย่าง</span><strong id="planCount">0 รายการ</strong></div>
+  <div class="visit-list" id="planList" aria-label="รายการนัดหมายจำลอง"></div>
+  <div class="card planner-detail" style="margin-top:15px" id="planDetail" aria-live="polite"><div class="empty">เลือกนัดหมายจำลองเพื่อดูข้อมูลประกอบการเข้าพบ</div></div>
+  <div class="planner-warning"><b>ขอบเขต:</b> Visit Brief นี้เป็นรายการข้อมูลที่จัดไว้ในชุดตัวอย่าง ไม่ได้วิเคราะห์จาก CRM จริง ไม่สร้างนัดหมายใหม่ และไม่ตรวจงานค้างซ้ำจริง</div>
+ </section>
+</main>
+<nav class="footerbar" aria-label="เมนู 4 หน้าจอ">
+ <button class="tab" data-screen="capture"><span class="ico">📝</span>รับข้อมูล</button>
+ <button class="tab" data-screen="review"><span class="ico">☑️</span>ตรวจทาน</button>
+ <button class="tab" data-screen="search"><span class="ico">🔎</span>ค้นหา</button>
+ <button class="tab active" data-screen="planner"><span class="ico">📅</span>วางแผน</button>
+</nav>
+</div>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+<div id="pasteModal" class="pastebox" role="dialog" aria-label="คัดลอกด้วยตนเอง"><div class="pasteinner"><div class="label">คัดลอกข้อความจากช่องด้านล่าง</div><textarea class="textarea" id="pasteText" readonly></textarea><button class="btn primary" id="closeModal">ปิดหน้าต่าง</button></div></div>
+<div id="savePreviewModal" class="pastebox" role="dialog" aria-modal="true" aria-label="ตรวจตัวอย่างการบันทึกลง Drive — MOCK เท่านั้น" tabindex="-1">
+ <div class="pasteinner" style="max-height:85vh;overflow:auto">
+  <div class="label">🔒 SAVE PREVIEW — ไม่ส่ง/ไม่บันทึกจริง</div>
+  <div class="notice">โหมดสาธารณะปลอดข้อมูลอ้างอิง: ไม่มี File ID จริง • โครงสร้างแท็บจำลองเท่านั้น • Production HOLD</div>
+  <div class="hint">เลือกปลายทางสำหรับจำลองเท่านั้น — ยังไม่เขียน ไม่ส่ง และไม่เปลี่ยนฐานข้อมูลหลัก</div>
+  <label class="label" for="saveRoute">ประเภทข้อมูลที่จะเตรียมบันทึก (Mock)</label>
+  <select id="saveRoute" class="field" aria-label="เลือกปลายทางจำลอง">
+    <option value="MEETING_NOTES">12 MEETING NOTES — ประเด็นการเข้าพบ</option>
+    <option value="VISIT_LOG">03 VISIT LOG — บันทึกเข้าพบ</option>
+    <option value="FOLLOW_UP">04 FOLLOW-UP — ติดตามงาน (รอตรวจซ้ำ)</option>
+    <option value="TODO">TASKS MASTER — งานค้าง (รอตรวจซ้ำ)</option>
+    <option value="HANDOFF">01 HANDOFF QUEUE — ห้ามข้าม Publish Gate</option>
+  </select>
+  <div class="notice" id="targetWarning" role="status" aria-live="polite">ไม่ใช่คำอนุมัติ Save และไม่ตรวจข้อมูลลูกค้าจริง</div>
+  <pre id="savePreviewPayload" style="white-space:pre-wrap;overflow-wrap:anywhere;font-size:11px;background:#f7f9fd;border:1px solid #d7dfec;border-radius:12px;padding:10px;max-height:40vh;overflow:auto"></pre>
+  <button type="button" class="btn primary" id="closeSavePreview">ปิดตัวอย่าง — ไม่มีการบันทึก</button>
+ </div>
+</div>
+<script id="parser">
+"use strict";
+// Standalone, inspectable MOCK-only parser. NO browser APIs, network or storage.
+// Every hospital here is fictional; no lookup against real hospitals or CRM is performed.
+const MOCK_REGISTRY = Object.freeze({
+  hospitals: ["ทุ่งดาว", "น้ำใส", "สายรุ้ง", "ฟ้าใหม่"],
+  aliases: {"ทุ่งดา":"ทุ่งดาว", "น้ำซาย":"น้ำใส", "สายรุง":"สายรุ้ง"}
+});
+const MOCK_PRODUCTS = [
+ {name:"EDAN i20", re:/\b(?:EDAN\s*)?i20\b/iu},
+ {name:"iBG8", re:/\biBG\s*8\b/iu},
+ {name:"Ketone", re:/Ketone|คีโตน/iu},
+ {name:"Lactate", re:/Lactate|แลคเตท/iu},
+ {name:"QC", re:/\bQC\b|ควบคุมคุณภาพ/iu}
+];
+const ROLE_RE = /หัวหน้าห้องปฏิบัติการ|หัวหน้าแล็บ|เจ้าหน้าที่จัดซื้อ|นักเทคนิคการแพทย์|(?<!โรง)พยาบาล|\bMT\b/giu;
+const DEPT_RE = /แผนก\s*(?:Blood\s*Bank|Lab|แล็บ|จัดซื้อ|ICU)|(?<!หัวหน้า)ห้องปฏิบัติการ|ห้องเลือด|\bBlood\s*Bank\b|\bICU\b|\bLab\b/giu;
+const HONORIFIC_RE = /(?:พี่|คุณ|น้อง)\s*[ก-๙]{1,18}/gu;
+const TASK_RE = /(?:ขอให้|ช่วย|ฝาก)?\s*(?:ติดตาม|โทรกลับ|นัดโทร|โทรแจ้ง|ประสาน|ส่งใบเสนอราคา|ส่งเอกสาร|เตรียมใบเสนอราคา|แจ้งผล|ขอใบเสนอราคา)|(?:ขอให้|ช่วย|ฝาก)\s*ส่ง/gu;
+// Check a negator directly BEFORE the action, not anywhere in the clause: e.g.
+// "ทุ่งดาว" contains the letters "งด" and must never be treated as a negation.
+const NEGATIVE_BEFORE_RE = /(?:ยังไม่ต้อง|ไม่ต้อง|อย่า|งด|ยกเลิก|ไม่ประสงค์|ยังไม่ให้|ไม่ให้|ยังไม่ส่ง|ไม่ส่ง|ไม่ได้|ไม่มีการ|ห้าม|ยังไม่|ไม่)\s*$/u;
+const TIME_RE = /(?:พรุ่งนี้|มะรืน|วันนี้|วันจันทร์|วันอังคาร|วันพุธ|วันพฤหัส(?:บดี)?|วันศุกร์|วันเสาร์|วันอาทิตย์|อาทิตย์หน้า|สัปดาห์หน้า|เดือนหน้า|สิ้นเดือน|\b\d{1,2}\/\d{1,2}(?:\/\d{2,4})?\b)/iu;
+function fragment(raw,start,end){return raw.slice(Math.max(0,start), Math.min(raw.length,end)).trim()}
+function uniqueStrings(items){return [...new Set(items.filter(Boolean))]}
+function cleanDept(text){return text.replace(/^แผนก\s*/u,"").trim()}
+function cleanPerson(value){
+  let s=value.replace(/\s+/gu,"").trim();
+  // Deliberately conservative: stop at explicit role or conjunction, never guess missing honorific/name.
+  s=s.split(/(?:และ(?:พี่|คุณ|น้อง)|หัวหน้าห้องปฏิบัติการ|หัวหน้าแล็บ|เจ้าหน้าที่จัดซื้อ|นักเทคนิคการแพทย์|พยาบาล|แผนก|พบ|คุย|เรื่อง|โทรกลับ|ติดตาม|ขอให้)/u)[0];
+  return s;
+}
+function hospitalSingle(hit){
+ let candidate=hit[2];
+ const verbIndex=candidate.search(/(?:พบ|คุย|แจ้ง|ติดตาม|ขอให้|โทรกลับ|เรื่อง)(?=(?:คุณ|พี่|น้อง|[ก-๙]|$))/u);
+ if(verbIndex>1)candidate=candidate.slice(0,verbIndex);
+ const known=MOCK_REGISTRY.hospitals.concat(Object.keys(MOCK_REGISTRY.aliases)).sort((a,b)=>b.length-a.length);
+ let stitched=false;
+ if(!known.includes(candidate)){
+  const prefix=known.find(n=>candidate.startsWith(n)&&candidate.length>n.length);
+  if(prefix){candidate=prefix;stitched=true}
+ }
+ const spoken_text=candidate;
+ let resolution_status="unknown",suggestion="";
+ if(MOCK_REGISTRY.hospitals.includes(candidate))resolution_status="matched-mock";
+ if(MOCK_REGISTRY.aliases[candidate]){resolution_status="alias-pending";suggestion="รพ."+MOCK_REGISTRY.aliases[candidate]}
+ return {spoken_text,candidate_name:"รพ."+candidate,resolution_status,suggestion,evidence:hit[0],source:"mock-registry-only",stitched};
+}
+function hospitalFrom(raw){
+ const matches=[...raw.matchAll(/(โรงพยาบาล|โรงบาล|ร\.?พ\.?)\s*:?\s*([ก-๙a-zA-Z0-9_-]{2,50})/giu)].map(hospitalSingle);
+ const candidates=[];
+ for(const m of matches){if(!candidates.some(x=>x.candidate_name===m.candidate_name))candidates.push(m)}
+ if(candidates.length===0)return {spoken_text:"",candidate_name:"",resolution_status:"missing",suggestion:"",evidence:"",source:"mock-registry-only",stitched:false,candidates:[]};
+ if(candidates.length>1)return {spoken_text:"",candidate_name:"",resolution_status:"ambiguous-multiple",suggestion:"",evidence:candidates.map(c=>c.evidence).join(" | "),source:"mock-registry-only",stitched:false,candidates};
+ return {...candidates[0],candidates};
+}
+function splitClauses(raw){return raw.split(/[\n;.!?。]+/u).map(x=>x.trim()).filter(Boolean)}
+function peopleFrom(raw){
+ let persons=[];
+ for(const clause of splitClauses(raw)){
+   const found=[...clause.matchAll(HONORIFIC_RE)].map(m=>({name:cleanPerson(m[0]),raw:m[0]})).filter(p=>/^(พี่|คุณ|น้อง)[ก-๙]{1,15}$/u.test(p.name));
+   const unq=[];const seen=new Set();for(const p of found){if(!seen.has(p.name)){seen.add(p.name);unq.push(p)}}
+   const roles=uniqueStrings([...clause.matchAll(ROLE_RE)].map(x=>x[0]));
+   const depts=uniqueStrings([...clause.matchAll(DEPT_RE)].map(x=>cleanDept(x[0])));
+   for(const p of unq){
+     const explicit = unq.length===1 && roles.length<=1 && depts.length<=1;
+     persons.push({spoken_name:p.name,normalized_name:p.name,role:explicit?(roles[0]||""):"",department:explicit?(depts[0]||""):"",linkage_status:explicit&&roles.length+depts.length>0?"single-person-clause":"unresolved",evidence:clause.slice(0,180)});
+   }
+ }
+ const uniques=[];for(const p of persons){if(!uniques.some(x=>x.spoken_name===p.spoken_name)){uniques.push(p)}}
+ return uniques;
+}
+function extractTasks(raw){
+ const out=[],blocked=[];
+ for(const clause of splitClauses(raw)){
+  for(const m of clause.matchAll(TASK_RE)){
+   const start=m.index||0;
+   const before=clause.slice(Math.max(0,start-26),start);
+   const remainder=clause.slice(start).trim();
+   const hasNegation=NEGATIVE_BEFORE_RE.test(before);
+   const pastStatus=/^(?:ติดตามแล้ว|โทรกลับแล้ว|ส่งใบเสนอราคาแล้ว|ส่งเอกสารแล้ว|ประสานแล้ว|แจ้งผลแล้ว|เตรียมใบเสนอราคาแล้ว)/u.test(remainder);
+   // Conservative additional guards: these are *not* actionable commitments.
+   // Avoid broad negation over the whole clause: other positive actions may coexist.
+   const conditionalBefore=/(?:ถ้า|หาก)(?:.{0,50}?)(?:อนุมัติ|ผ่านการอนุมัติ)(?:แล้ว)?(?:ให้)?\s*$/u.test(before);
+   const pendingApproval=/(?:หลังผ่านอนุมัติ|หลังอนุมัติ|เมื่อ.{0,25}อนุมัติ|ถ้า.{0,25}อนุมัติ|หาก.{0,25}อนุมัติ)/u.test(remainder.slice(0,100));
+   const ongoingStatus=/อยู่ระหว่าง\s*$/u.test(before)||/(?:\sอยู่|อยู่ระหว่างดำเนินการ)\s*$/u.test(remainder);
+   const trailingCompletion=/(?:ไปแล้ว|เรียบร้อยแล้ว|\sแล้ว)\s*$/u.test(remainder);
+   const trailingNegation=/(?:ไม่ต้อง|งด|ยกเลิก)\s*$/u.test(remainder);
+   const mustBlock=hasNegation||pastStatus||conditionalBefore||pendingApproval||ongoingStatus||trailingCompletion||trailingNegation;
+   if(mustBlock){
+     const reason=hasNegation||trailingNegation?"explicit-negation-or-not-yet":pastStatus||trailingCompletion?"already-completed":ongoingStatus?"ongoing-status":"conditional-not-confirmed";
+     blocked.push({evidence:clause.slice(0,180),reason});
+     continue;
+   }
+   const time=(TIME_RE.exec(remainder)||[])[0]||"";
+   const description=remainder.slice(0,140);
+   if(description&&!out.some(t=>t.description===description))out.push({description,negated:false,due_text:time,due_date_status:time?"unverified-text":"not-provided",assigned_to:"",evidence:clause.slice(0,180)});
+  }
+ }
+ return {actions:out,blocked};
+}
+function parseNoteV4(original){
+ const source_text=String(original??"").trim();
+ const hospital=hospitalFrom(source_text);
+ const people=peopleFrom(source_text);
+ const products=MOCK_PRODUCTS.filter(p=>p.re.test(source_text)).map(p=>({spoken_text:p.name,candidate_product:p.name,status:"matched-mock"}));
+ const taskInfo=extractTasks(source_text);
+ const flags=[];
+ if(hospital.resolution_status==="ambiguous-multiple")flags.push({field:"hospital",issue:"พบหลายโรงพยาบาลในบันทึกเดียว — ไม่จับคู่งาน/คนกับโรงพยาบาลให้อัตโนมัติ [รอยืนยันคำพูด]",severity:"review"});
+ else if(!hospital.candidate_name)flags.push({field:"hospital",issue:"ไม่พบชื่อโรงพยาบาล [รอข้อมูล]",severity:"review"});
+ else if(hospital.resolution_status==="alias-pending")flags.push({field:"hospital",issue:"พบชื่อคล้ายในทะเบียนจำลอง แต่ยังไม่ได้ยืนยัน [รอยืนยันคำพูด]",severity:"review"});
+ else if(hospital.resolution_status==="unknown")flags.push({field:"hospital",issue:"ชื่อโรงพยาบาลไม่อยู่ในพจนานุกรมจำลอง [รอยืนยันคำพูด]",severity:"review"});
+ if(hospital.stitched)flags.push({field:"hospital",issue:"ชื่อโรงพยาบาลติดคำอื่น: ตรวจต้นฉบับด้วยตนเอง",severity:"review"});
+ if(!people.length)flags.push({field:"people",issue:"ไม่พบผู้ติดต่อ [รอข้อมูล]",severity:"review"});
+ if(people.length>1||people.some(p=>p.linkage_status==="unresolved"))flags.push({field:"people",issue:"ความเชื่อมโยงคน–ตำแหน่ง/แผนกยังไม่แน่ชัด กรุณาตรวจทาน",severity:"review"});
+ if(!products.length)flags.push({field:"products",issue:"ไม่พบสินค้าจากพจนานุกรมจำลอง [รอข้อมูล]",severity:"info"});
+ if(source_text.length>8000)flags.push({field:"length",issue:"บันทึกยาวมาก ควรแบ่งตรวจทานเป็นช่วง ๆ (ไม่ตัดข้อความต้นฉบับ)",severity:"review"});
+ if(taskInfo.blocked.length)flags.push({field:"actions",issue:`พบข้อความปฏิเสธ สถานะ หรือเงื่อนไข ${taskInfo.blocked.length} รายการ (ไม่สร้างงานอัตโนมัติ)`,severity:"review"});
+ if(!taskInfo.actions.length)flags.push({field:"actions",issue:"ไม่พบคำสั่งติดตามที่ปลอดภัย [รอตรวจสอบ]",severity:"info"});
+ if(taskInfo.actions.some(a=>a.due_text))flags.push({field:"actions",issue:"วันเวลายังไม่แปลงเป็นวันที่ปฏิทิน ต้องยืนยันเอง",severity:"review"});
+ const conversation_summary=source_text?source_text.slice(0,240)+(source_text.length>240?"…":""):"";
+ return {source_text,hospital,people,products,conversation_summary,actions:taskInfo.actions,blocked_actions:taskInfo.blocked,flags,review_status:flags.some(f=>f.severity==="review")?"NEEDS_REVIEW":"DRAFT",handoff_status:"NOT_SENT",source_environment:"MOBILE_UI_LAB_MOCK",persistence:"NONE",engine:"rule-based-mock-v4",verified:false};
+}
+
+</script>
+<script id="app">
+"use strict";
+// v12 F2 Smart Review: segment previews, not verified hospital-person-task links.
+// A separate copy is used for this demo; does not mutate source parser v4.
+function smartSplitSegments(source){
+ const raw=String(source||"");
+ const re=/(โรงพยาบาล|โรงบาล|ร\.?พ\.?)\s*:?\s*([ก-๙a-zA-Z0-9_-]{2,50})/giu;
+ const found=[...raw.matchAll(re)];
+ if(!found.length) return {hasMultiple:false,unclearPreamble:raw.trim(),segments:[]};
+ const preamble=raw.slice(0,found[0].index).trim();
+ const segments=found.map((m,i)=>{
+   const start=m.index;
+   const end=i+1<found.length?found[i+1].index:raw.length;
+   const excerpt=raw.slice(start,end).trim();
+   const p=parseNoteV4(excerpt);
+   return {index:i+1, hospital:p.hospital.candidate_name||"[รอยืนยันคำพูด]",resolution:p.hospital.resolution_status,
+     contacts:p.people.map(x=>x.normalized_name), products:p.products.map(x=>x.candidate_product),
+     proposed_actions:p.actions.map(x=>x.description), blocked:p.blocked_actions.map(x=>({evidence:x.evidence,reason:x.reason})),
+     excerpt, needs_confirmation:true, source_start:start};
+ });
+ return {hasMultiple:found.length>1,unclearPreamble:preamble,segments};
+}
+function smartRadarModel(d){
+ if(!d)return null;
+ const slice=smartSplitSegments(d.source_text);
+ const risks=[];
+ if(slice.hasMultiple)risks.push("หลายโรงพยาบาล: ห้ามสรุปว่าแต่ละคนหรืองานเป็นของโรงพยาบาลใดโดยอัตโนมัติ");
+ if(slice.unclearPreamble)risks.push("ข้อความก่อนชื่อโรงพยาบาลยังไม่ผูกกับหน่วยงาน");
+ if(d.hospital.resolution_status!=="matched-mock"&&!slice.hasMultiple)risks.push("ชื่อโรงพยาบาลต้องตรวจ/ยืนยัน");
+ if(d.people.some(x=>x.linkage_status!=="single-person-clause"))risks.push("ผู้ติดต่อ/ตำแหน่ง/แผนกอาจไม่ตรงคู่");
+ if(d.blocked_actions.length)risks.push("พบคำปฏิเสธ/งานที่ทำแล้ว/เงื่อนไข: ไม่สร้างงาน");
+ if(d.actions.some(x=>x.due_text))risks.push("วันเวลาที่พูดเป็นข้อความ ไม่ใช่วันนัดยืนยัน");
+ if(d.source_text.length>8000)risks.push("บันทึกยาว: แนะนำแบ่งตรวจทาน");
+ if(!d.products.length)risks.push("ไม่พบผลิตภัณฑ์ที่รู้จัก [รอข้อมูล]");
+ return {risks, ...slice};
+}
+const SAMPLE_NOTES={
+ a:"รพ.ทุ่งดาว พบคุณดารา หัวหน้าแล็บ แผนก Lab คุยเรื่อง EDAN i20 และ Ketone ขอให้ส่งใบเสนอราคา Ketone วันศุกร์",
+ b:"รพ.ทุ่งดา พบพี่เมย์ เจ้าหน้าที่จัดซื้อ แผนกจัดซื้อ คุยเรื่อง Lactate ติดตาม PO อาทิตย์หน้า",
+ c:"โรงพยาบาลน้ำใส พบคุณมาลี พยาบาล แผนก ICU คุยเรื่อง QC ยังไม่ต้องส่งใบเสนอราคา",
+ d:"รพ.ฟ้าใหม่ พบคุณอิง หัวหน้าแล็บ และพี่ดาว เจ้าหน้าที่จัดซื้อ คุยเรื่อง iBG8 ยังไม่ส่งเอกสาร ให้โทรกลับพรุ่งนี้",
+ e:"รพ.ทุ่งดาว พบคุณดารา เรื่อง Ketone\nรพ.น้ำใส พบคุณมาลี เรื่อง QC ติดตาม PO พรุ่งนี้",
+ f:"รพ.ทุ่งดาว พบคุณดารา แผนก Lab คุยเรื่อง Ketone ติดตามใบเสนอราคา วันศุกร์\n" + "รายละเอียดการทดลองทั่วไป ไม่ใช่ข้อมูลลูกค้าจริง ".repeat(200) + "\nรพ.น้ำใส พบคุณมาลี แผนก ICU คุยเรื่อง QC ยังไม่ต้องส่งเอกสาร",
+ g:"รพ.ฟ้าใหม่ พบคุณอิง คุยเรื่อง Lactate ไม่ต้องติดตามใบเสนอราคา ส่งเอกสารแล้ว แต่ให้โทรกลับพรุ่งนี้"
+};
+const INITIAL_DEMO=[
+ {hospital:"รพ.ทุ่งดาว",people:"คุณดารา",products:"EDAN i20, Ketone",tasks:"ส่งใบเสนอราคา Ketone",summary:"ข้อมูลสมมติ",label:"DEMO-001",status:"MOCK",raw:"ตัวอย่างจำลอง"},
+ {hospital:"รพ.น้ำใส",people:"คุณมาลี",products:"QC",tasks:"[รอข้อมูล]",summary:"ข้อมูลสมมติ",label:"DEMO-002",status:"MOCK",raw:"ตัวอย่างจำลอง"},
+ {hospital:"รพ.สายรุ้ง",people:"พี่ดาว",products:"Lactate",tasks:"ติดตามผลจำลอง",summary:"ข้อมูลสมมติ",label:"DEMO-003",status:"MOCK",raw:"ตัวอย่างจำลอง"}
+];
+let tempEntries=[],draft=null,reviewed=false,toastHandle;
+const REQUIRED_CONFIRMATIONS=["confirmSource","confirmNames","confirmTasks","confirmMock"];
+const el=id=>document.getElementById(id);
+const escapeHTML=s=>String(s??"").replace(/[&<>"']/g,ch=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"})[ch]);
+function renderSmartRadar(){
+ const target=el("radarContent");if(!target)return;
+ if(!draft){target.textContent="ยังไม่มีผลแยกข้อมูล [รอวิเคราะห์ใหม่]";return;}
+ const model=smartRadarModel(draft);
+ const pills=`<div class="radar-pills"><span class="radar-pill">${model.segments.length} ช่วงชื่อโรงพยาบาล</span><span class="radar-pill warn">${model.risks.length} จุดต้องตรวจ</span><span class="radar-pill">${draft.blocked_actions.length} งานที่ถูกกันไว้</span></div>`;
+ const cautions=model.risks.length?model.risks.map(x=>`<div class="radar-status">⚠️ ${escapeHTML(x)}</div>`).join(""):'<div class="hint">ไม่มีความเสี่ยงตามกฎชุดนี้ (ไม่ได้แปลว่าตรวจสอบความถูกต้องจริงแล้ว)</div>';
+ const intro=model.unclearPreamble?`<div class="radar-segment"><b>ข้อความที่ยังไม่ผูกหน่วยงาน</b><div class="radar-slice">${escapeHTML(model.unclearPreamble.slice(0,700))}${model.unclearPreamble.length>700?"…":""}</div></div>`:"";
+ const segments=model.segments.map((s,i)=>{
+  const orUnknown=x=>x.length?escapeHTML(x.join(" · ")):"[รอข้อมูล]";
+  const blocked=s.blocked.length?s.blocked.map(x=>`<div class="radar-line">⛔ ${escapeHTML(x.evidence.slice(0,140))} <b>[ไม่นำไปสร้างงาน]</b></div>`).join(""):"<div class='radar-line'>⛔ ไม่พบงานที่ถูกกันในช่วงนี้</div>";
+  return `<div class="radar-segment"><h3>🏥 ช่วงที่ ${s.index}: ${escapeHTML(s.hospital)}</h3><div class="radar-line">👤 บุคคลที่พบในช่วงข้อความ: ${orUnknown(s.contacts)}</div><div class="radar-line">📦 สินค้าที่พบในช่วงข้อความ: ${orUnknown(s.products)}</div><div class="radar-line">📌 ข้อความที่อาจเป็นงานติดตาม: ${orUnknown(s.proposed_actions)}</div>${blocked}<div class="radar-slice">${escapeHTML(s.excerpt.slice(0,800))}${s.excerpt.length>800?"…":""}</div><div class="hint">สรุปจากตำแหน่งข้อความ ไม่ใช่การยืนยันความสัมพันธ์ของคน สินค้า งาน หรือโรงพยาบาล</div><button type="button" class="btn outline" data-copy-segment="${i}">📋 คัดลอกเฉพาะข้อความช่วงนี้ (ไม่ส่ง)</button></div>`;
+ }).join("");
+ target.innerHTML=pills+cautions+intro+segments+`<div class="hint">🔒 ข้อความทุกช่วงเป็น Mock Draft • ไม่ใช้ API • ไม่ Save • ไม่ผูกข้อมูลกับ CRM</div>`;
+ target.querySelectorAll("[data-copy-segment]").forEach(b=>b.addEventListener("click",()=>{const i=Number(b.dataset.copySegment);const s=model.segments[i];if(s)safeCopy("MOBILE UI LAB v12 — ข้อความช่วงทดลอง / ยังไม่ยืนยัน\n"+s.excerpt+"\n[MOCK • NOT_SENT • ไม่บันทึกจริง]");}));
+}
+function toast(message){const target=el("toast");target.textContent=message;target.style.display="block";clearTimeout(toastHandle);toastHandle=setTimeout(()=>target.style.display="none",2700)}
+function displayScreen(which){document.querySelectorAll(".screen").forEach(s=>s.classList.toggle("active",s.id===which));document.querySelectorAll(".tab").forEach(t=>{t.classList.toggle("active",t.dataset.screen===which);t.setAttribute("aria-current",t.dataset.screen===which?"page":"false")});if(which==="search")searchEntries();if(which==="planner")renderPlanner();window.scrollTo(0,0)}
+function inputField(id,label,value,help="",multiline=false){const safe=escapeHTML(value);return `<div class="fieldblock"><label class="label" for="${id}">${escapeHTML(label)}</label>${multiline?`<textarea rows="3" class="field editarea" id="${id}">${safe}</textarea>`:`<input type="text" class="field" id="${id}" value="${safe}" autocomplete="off">`}${help?`<div class="hint">${escapeHTML(help)}</div>`:""}</div>`}
+function invalidateParsedDraft(reason=""){
+ const sp=el("savePreviewModal");if(sp)sp.style.display="none";const pp=el("savePreviewPayload");if(pp)pp.textContent="";
+ const existed=Boolean(draft);
+ draft=null;reviewed=false;
+ REQUIRED_CONFIRMATIONS.forEach(id=>{const c=el(id);if(c)c.checked=false});
+ el("reviewFields").innerHTML='<div class="empty">ผลวิเคราะห์เดิมหมดอายุแล้ว — กลับไปกดแยกข้อมูลใหม่</div>';
+ el("summary").textContent="[รอวิเคราะห์ใหม่]";
+ renderSmartRadar();renderHandoffStatus();
+ el("pasteText").value="";
+ setReviewState();
+ const notice=el("sourceStatus");
+ if(notice){notice.textContent=existed?"⚠️ มีการแก้ต้นฉบับ ผลแยกเดิมถูกยกเลิกแล้ว ต้องวิเคราะห์ใหม่":reason||"ข้อมูลทดลองยังไม่ได้วิเคราะห์";notice.setAttribute("role","status")}
+}
+function onSourceChanged(){updateLength();if(draft)invalidateParsedDraft();}
+function onDataEdit(){el("savePreviewModal").style.display="none";el("savePreviewPayload").textContent="";reviewed=false;REQUIRED_CONFIRMATIONS.forEach(id=>{const c=el(id);if(c)c.checked=false});setReviewState();renderDraft();}
+function setReviewState(){const target=el("reviewState");if(target)target.textContent=reviewed?"REVIEWED_MOCK (ไม่ใช่อนุมัติจริง)":draft?.review_status||"DRAFT";}
+function candidateHospital(){const h=draft?.hospital;if(!h)return "";return h.candidate_name||""}
+function reviewForm(){if(!draft)return;
+ const h=draft.hospital;
+ const matchBadge=h.resolution_status==="matched-mock"?"ตรงทะเบียนสมมติเท่านั้น":h.resolution_status==="alias-pending"?"คำใกล้เคียง — รอยืนยัน":h.resolution_status==="missing"?"ไม่พบชื่อ [รอข้อมูล]":h.resolution_status==="ambiguous-multiple"?"พบหลายโรงพยาบาล — กรุณาเลือกเอง":"ไม่อยู่ในทะเบียนสมมติ";
+ const candidates=h.resolution_status==="ambiguous-multiple"?`<div class="mutedbox">พบหลายชื่อในบันทึกเดียว: ${h.candidates.map(c=>`<b>${escapeHTML(c.candidate_name)}</b>`).join(" / ")}<div class="hint">ระบบไม่เลือกหน่วยงานหลักหรือผูกงานให้อัตโนมัติ กรุณาแยกบันทึกหรือระบุหน่วยงานก่อนยืนยัน</div></div>`:"";
+ const people=draft.people.length?draft.people:[{normalized_name:"",role:"",department:"",linkage_status:"unresolved",evidence:""}];
+ const personSection=people.map((p,i)=>`<div class="person-card"><div class="metric"><strong>ผู้ติดต่อ ${i+1}</strong><span>${p.linkage_status==="single-person-clause"?"จับคู่จากข้อความกลุ่มเดียว":"ต้องตรวจความสัมพันธ์"}</span></div>${inputField(`person-${i}-name`,"ชื่อผู้ติดต่อ",p.normalized_name)}${inputField(`person-${i}-role`,"ตำแหน่ง",p.role)}${inputField(`person-${i}-department`,"แผนก",p.department)}<div class="hint">หลักฐาน: ${escapeHTML(p.evidence||"[รอข้อมูล]")}</div></div>`).join("");
+ const warnings=draft.flags.length?draft.flags.map(f=>`<p class="warning-row"><strong>${escapeHTML(f.field)}:</strong> ${escapeHTML(f.issue)}</p>`).join(""):`<p class="warning-row">ไม่มี Flag ตามกฎจำลอง (ไม่ได้ยืนยันว่าข้อมูลถูกต้องจริง)</p>`;
+ el("reviewFields").innerHTML=`<div class="metric"><strong>ผลแยกจากข้อความ</strong><span>RULE-BASED v4</span></div><div class="flags"><span class="flag warn">${escapeHTML(matchBadge)}</span><span class="flag">NOT SENT</span><span class="flag">DATA MOCK ONLY</span></div>${inputField("field-hospital","🏥 โรงพยาบาล",candidateHospital(),"หลักฐาน: "+(h.evidence||"[รอข้อมูล]"))}${candidates}${h.suggestion?`<button type="button" class="btn outline mini" id="use-suggestion">ใช้ข้อเสนอ ${escapeHTML(h.suggestion)} (เฉพาะ Mock)</button>`:""}<div class="label" style="margin-top:14px">👤 ผู้ติดต่อและความสัมพันธ์</div>${personSection}${inputField("field-products","📦 สินค้า",draft.products.map(p=>p.candidate_product).join(", "))}${inputField("field-actions","📌 งานติดตาม",draft.actions.map(a=>a.description).join("\n"),"คำสั่งปฏิเสธจะไม่สร้างงานให้เอง",true)}${inputField("field-due","📅 ข้อความวันเวลา (ยังไม่แปลงเป็นวันที่)",draft.actions.map(a=>a.due_text).filter(Boolean).join(", "))}${inputField("field-summary","💬 ประเด็นการสนทนา (กรุณาแก้ด้วยตนเอง)",draft.conversation_summary,"ช่องนี้เป็นข้อความตัดสั้น ไม่ใช่ AI สรุปความ",true)}<div class="label">ประเด็นต้องตรวจ (${draft.flags.length})</div><div class="mutedbox">${warnings}</div><div class="mutedbox sourcebox"><b>ข้อความต้นฉบับ:</b> ${escapeHTML(draft.source_text||"[รอข้อมูล]")}</div>`;
+ renderSmartRadar();renderHandoffStatus();
+ el("reviewFields").querySelectorAll("input, textarea").forEach(x=>x.addEventListener("input",onDataEdit));
+ el("use-suggestion")?.addEventListener("click",()=>{el("field-hospital").value=h.suggestion;onDataEdit();toast("ใส่ข้อเสนอใน Draft เท่านั้น — ยังไม่ยืนยันชื่อจริง")});
+ setReviewState();renderDraft();
+}
+function readForm(){if(!draft)return null;
+ const people=[...el("reviewFields").querySelectorAll('input[id^="person-"][id$="-name"]')].map(x=>{const i=Number(x.id.split("-")[1]);return {name:x.value.trim(),role:el(`person-${i}-role`).value.trim(),department:el(`person-${i}-department`).value.trim()}}).filter(p=>p.name||p.role||p.department);
+ return {hospital:el("field-hospital").value.trim(),people,products:el("field-products").value.trim().split(/\s*,\s*/u).filter(Boolean),conversation_summary:el("field-summary").value.trim(),actions:el("field-actions").value.trim().split(/\n/u).map(x=>x.trim()).filter(Boolean),due_text:el("field-due").value.trim()};
+}
+function summaryDraft(){const d=readForm();if(!d)return "[รอข้อมูล]";
+ const v=s=>s||"[รอข้อมูล]";
+ const ppl=d.people.length?d.people.map(p=>`${v(p.name)} / ตำแหน่ง: ${v(p.role)} / แผนก: ${v(p.department)}`).join("\n"):"[รอข้อมูล]";
+ return `🏥 โรงพยาบาล: ${v(d.hospital)}\n👤 ผู้ติดต่อ:\n${ppl}\n📦 สินค้า: ${v(d.products.join(", "))}\n💬 ประเด็นสนทนา: ${v(d.conversation_summary)}\n📌 งานติดตาม: ${v(d.actions.join(" | "))}\n📅 ข้อความวันเวลา: ${v(d.due_text)}\n\nสถานะ: ${reviewed?"REVIEWED_MOCK":"DRAFT / UNVERIFIED"}\nที่มา: MOBILE UI LAB / MOCK / NOT SENT\nหมายเหตุ: ไม่ได้ตรวจชื่อหน่วยงานหรือบันทึกข้อมูลจริง`;
+}
+function renderDraft(){if(draft)el("summary").textContent=summaryDraft();renderHandoffStatus()}
+function jsonDraft(){
+ const d=readForm();if(!d)return "";
+ const radar=smartRadarModel(draft);
+ const multi=radar.hasMultiple;
+ const extracted=multi?{...d,hospital:"",people:[],products:[],actions:[],
+  unattributed_people:d.people,unattributed_products:d.products,unattributed_actions:d.actions,
+  unattributed_due_text:d.due_text}:d;
+ const segments=radar.segments.map(s=>({hospital_mention:s.hospital,contacts_unverified:s.contacts,
+  products_unverified:s.products,proposed_actions_unverified:s.proposed_actions,blocked_action_count:s.blocked.length,
+  association_status:"NEEDS_MANUAL_VERIFICATION",source_excerpt:s.excerpt.slice(0,180)}));
+ return JSON.stringify({schema:"mobile-ui-lab-v12-smart-review-mock",...extracted,
+  source_text_included:false,source_excerpt_included:true,source_environment:"MOBILE_UI_LAB_MOCK",
+  review_status:multi?"NEEDS_MANUAL_SPLIT":reviewed?"REVIEWED_MOCK":"NEEDS_REVIEW",
+  requires_manual_split:multi,automatic_hospital_contact_task_assignment:false,
+  hospital_resolution:draft.hospital.resolution_status,number_of_hospital_candidates:draft.hospital.candidates.length,
+  review_risks:radar.risks,segmented_text_preview:segments,flags:draft.flags,
+  blocked_actions_count:draft.blocked_actions.length,handoff_status:"NOT_SENT",synced:false,persistence:"NONE",approved:false},null,2);
+}
+// v12 F4: pure text generation for explicit copy; never auto-sends or writes.
+function handoffContent(kind){
+ if(!draft)return "";
+ const model=smartRadarModel(draft);
+ if(model.hasMultiple)return "";
+ const d=readForm();if(!d)return "";
+ const v=x=>x||"[รอข้อมูล]";
+ const guard=[
+  "สถานะ: MOCK_DRAFT / NOT_SENT / NOT_SAVED / NOT_APPROVED",
+  "ห้ามสร้าง Visit, Task, Note หรือ ID; ห้ามเขียนหรือส่งข้อมูลจริงโดยอัตโนมัติ",
+  "ไม่ตรวจ CRM/Nexora/Calendar และไม่ยืนยันชื่อจากฐานจริง; ตรวจความซ้ำก่อนนำไปใช้",
+  "วันเวลาคงเป็นข้อความที่พูด ไม่แปลงเป็นนัดหมายยืนยัน",
+  `Review: ${reviewed?"REVIEWED_MOCK (ไม่ใช่อนุมัติ Save)":"NEEDS_MANUAL_REVIEW"}`,
+  `โรงพยาบาล: ${v(d.hospital)} [รอยืนยันกับฐานข้อมูล]`,
+ ];
+ if(kind==="DAYFLOW")return [
+  "🏥 MOBILE UI LAB v12 — DAYFLOW DRAFT (ข้อมูลสมมติ)",
+  "โปรดช่วยเรียบเรียงรายงานการเข้าเยี่ยมจากข้อมูลด้านล่างเป็น Draft ในแชตเท่านั้น",
+  "ถ้าข้อมูลขาดให้ใส่ [รอข้อมูล] และไม่เดาชื่อคน โรงพยาบาล หรือสินค้า",
+  ...guard,
+  "ผู้ติดต่อ: "+(d.people.map(p=>`${v(p.name)} / ${v(p.role)} / ${v(p.department)}`).join(" | ")||"[รอข้อมูล]"),
+  "สินค้า: "+v(d.products.join(", ")),
+  "ประเด็นสนทนา: "+v(d.conversation_summary),
+  "งานที่อาจต้องติดตาม: "+v(d.actions.join(" | ")),
+  "ข้อความวันเวลา: "+v(d.due_text),
+  `งานที่ถูกกันเพราะคำปฏิเสธ/ทำแล้ว: ${draft.blocked_actions.length} รายการ — ห้ามสร้างอัตโนมัติ`
+ ].join("\n");
+ if(kind==="NEXT_MOVE")return [
+  "🔥 MOBILE UI LAB v12 — NEXT MOVE DRAFT (ข้อมูลสมมติ)",
+  "โปรดช่วยจัดกลุ่มงานติดตามที่อาจต้องทำเป็นข้อเสนอในแชตเท่านั้น ไม่สร้าง Task จริง",
+  ...guard,
+  "ข้อเสนอให้ติดตาม: "+(d.actions.length?d.actions.map((x,i)=>`${i+1}. ${x} [รอยืนยันคำพูด]`).join(" | "):"[ยังไม่มีงานยืนยัน — รอข้อมูล]"),
+  "วันเวลาที่พูด: "+v(d.due_text),
+  `งานที่ถูกกันไว้: ${draft.blocked_actions.length} รายการ (ไม่สร้างงาน)`,
+  "ก่อนสร้างงานจริงต้องตรวจชื่อผู้รับผิดชอบ, Due date, ID และรายการซ้ำ พร้อมอนุมัติแยก"
+ ].join("\n");
+ return "";
+}
+function renderHandoffStatus(){
+ const target=el("handoffStatus");if(!target)return;
+ if(!draft){target.textContent="[รอข้อมูล] ต้องแยกข้อความทดลองก่อน";return;}
+ target.textContent=smartRadarModel(draft).hasMultiple?
+  "⚠️ พบหลายโรงพยาบาล: ปุ่ม F4 จะไม่คัดลอกข้อความรวม ต้องแบ่งตรวจแยกก่อน":
+  `${reviewed?"REVIEWED_MOCK":"NEEDS_REVIEW"} • คัดลอกได้เฉพาะ Draft ด้วยตนเอง ไม่ส่ง ChatGPT อัตโนมัติ`;
+}
+function copyStructuredHandoff(kind){
+ if(!draft){toast("กรุณาแยกข้อมูลก่อนสร้าง Draft");return;}
+ if(smartRadarModel(draft).hasMultiple){toast("หลายโรงพยาบาล: ต้องแยกต้นฉบับก่อนคัดลอก DAYFLOW/NEXT MOVE");return;}
+ safeCopy(handoffContent(kind));
+}
+function chatGPTDraft(){
+ const structured=jsonDraft();
+ if(!structured)return "";
+ return [
+  "📋 MOBILE UI LAB — ข้อมูลสำหรับส่งให้ ChatGPT (DRAFT เท่านั้น)",
+  "โปรดจัดทำสรุปเข้าเยี่ยมแบบ DAYFLOW Draft และแยกงานติดตามจากข้อมูลจำลองด้านล่าง",
+  "ห้ามแต่งชื่อโรงพยาบาล บุคคล Customer ID วันที่ หรือรายละเอียดที่ไม่มีในข้อมูล; จุดกำกวมให้ติด [รอข้อมูล] หรือ [รอยืนยันคำพูด]",
+  "ห้ามบันทึก ส่งต่อ ซิงก์ หรือแก้ Google Drive / CRM / TO-DO / Calendar / Nexora โดยไม่มีคำสั่งอนุมัติแยก",
+  "แม้ระบุ REVIEWED_MOCK ก็หมายถึงตรวจในหน้าทดลองเท่านั้น ไม่ใช่การอนุมัติ Production",
+  "เมื่อมีหลายโรงพยาบาล ห้ามผูกงาน คน หรือสินค้ากับโรงพยาบาลใดจนกว่าจะตรวจแยกเอง",
+  "",
+  "ข้อมูลแบบมีโครงสร้าง (ไม่ได้แนบข้อความต้นฉบับเต็ม):",
+  structured
+ ].join("\n");
+}
+function analyzeNote(){if(!el("noteText").value.trim()){invalidateParsedDraft("กรุณากรอกข้อความสมมติก่อนวิเคราะห์");toast("ยังไม่มีข้อความสมมติให้แยกข้อมูล");return}draft=parseNoteV4(el("noteText").value);el("sourceStatus").textContent="ผลวิเคราะห์ล่าสุดตรงกับข้อความที่แสดงอยู่ในช่องนี้";reviewed=false;REQUIRED_CONFIRMATIONS.forEach(id=>{const c=el(id);if(c)c.checked=false});reviewForm();displayScreen("review")}
+async function safeCopy(text){if(!text){toast("กรุณาแยกข้อความก่อน");return}try{if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(text);toast("คัดลอกแล้ว — ไม่ได้ส่งหรือบันทึกข้อมูล");return}}catch(_err){}
+ el("pasteText").value=text;el("pasteModal").style.display="flex";el("pasteText").focus();el("pasteText").select();}
+function addTemporary(){const d=readForm();if(!d){toast("ยังไม่มี Draft");return}if(smartRadarModel(draft).hasMultiple){toast("หลายโรงพยาบาล: แยกบันทึกเป็นรายหน่วยงานก่อนเพิ่มแฟ้มทดลอง");return}const i=tempEntries.length+1;tempEntries.unshift({hospital:d.hospital||"[รอข้อมูล]",people:d.people.map(p=>p.name).join(", "),products:d.products.join(", "),tasks:d.actions.join(" | "),summary:d.conversation_summary,label:"TEMP-"+String(i).padStart(3,"0"),status:reviewed?"REVIEWED_MOCK":"DRAFT",raw:""});toast("เพิ่มในหน่วยความจำชั่วคราวเท่านั้น");displayScreen("search")}
+function searchEntries(){const query=el("searchText").value.trim().toLocaleLowerCase("th");const all=[...tempEntries,...INITIAL_DEMO];const results=all.filter(item=>Object.values(item).join(" ").toLocaleLowerCase("th").includes(query));el("resultCount").textContent=results.length+" รายการ";
+ el("results").innerHTML=results.length?results.map(item=>`<article class="item"><div class="itemhead"><strong>${escapeHTML(item.hospital)}</strong><small>${escapeHTML(item.label)}</small></div><p>👤 ${escapeHTML(item.people||"[รอข้อมูล]")}<br>📦 ${escapeHTML(item.products||"[รอข้อมูล]")}<br>📌 ${escapeHTML(item.tasks||"[รอข้อมูล]")}</p><div class="hint">${escapeHTML(item.status)} • ข้อมูลทดลองเท่านั้น</div></article>`).join(""):'<div class="empty">ไม่พบในข้อมูลทดลองชั่วคราว</div>';
+}
+// v12 F1: keyboard dictation support only. No media APIs, audio recording, storage, network or sync.
+let voiceHistory=[];
+let voiceChunkCount=0;
+function renderVoiceCapture(){
+ const chunk=el("voiceChunk").value;
+ const total=el("noteText").value;
+ el("voiceChunkLength").textContent=chunk.length.toLocaleString("th-TH")+" ตัวอักษร";
+ const canUndo=voiceHistory.length>0 && total===voiceHistory[voiceHistory.length-1].after && !chunk.trim();
+ el("undoVoiceChunk").disabled=!canUndo;
+ el("undoVoiceChunk").setAttribute("aria-disabled",canUndo?"false":"true");
+ const risk=total.length>10000;
+ const segments=voiceChunkCount;
+ const feedback=[`เพิ่มข้อความจากช่องพูดแล้ว ${segments} ช่วง (เฉพาะรอบทดลองนี้)`, `ข้อความรวม ${total.length.toLocaleString("th-TH")} ตัวอักษร • ช่วงที่ยังไม่เพิ่ม ${chunk.length.toLocaleString("th-TH")} ตัวอักษร`];
+ if(risk) feedback.push("⚠️ ข้อความยาวมาก: แนะนำแบ่งตรวจทาน ไม่ผูกหลายโรงพยาบาลโดยอัตโนมัติ");
+ if(voiceHistory.length&&!canUndo) feedback.push("↶ ย้อนคืนได้เฉพาะเมื่อข้อความรวมยังตรงกับช่วงที่เพิ่งเพิ่มและช่องพูดว่าง");
+ el("voiceCaptureStatus").textContent=feedback.join("\n");
+ el("voiceCaptureStatus").classList.toggle("warn",risk);
+}
+function voiceAppend(){
+ const chunk=el("voiceChunk").value.trim();
+ if(!chunk){toast("กรุณาพิมพ์หรือพูดข้อความสมมติก่อน");return;}
+ if(el("noteText").value===SAMPLE_NOTES.a){toast("มีข้อความตัวอย่างอยู่: กด เริ่มบันทึกว่าง ก่อนเพิ่มช่วง");return;}
+ const prev=el("noteText").value;
+ const next=prev+(prev.trim()?"\n\n":"")+chunk;
+ if(next.length>70000){toast("ข้อความยาวเกินขนาดทดลอง กรุณาแยกเป็นหลายบันทึก");return;}
+ el("noteText").value=next;
+ voiceHistory.push({before:prev,after:next,chunk});
+ voiceChunkCount++;
+ el("voiceChunk").value="";
+ onSourceChanged();
+ renderVoiceCapture();
+ toast("เพิ่มช่วงข้อความทดลองแล้ว • ยังไม่แยกข้อมูล ไม่ Save");
+}
+function voiceUndo(){
+ if(!voiceHistory.length){toast("ไม่มีช่วงที่ย้อนคืนได้");return;}
+ const last=voiceHistory[voiceHistory.length-1];
+ if(el("noteText").value!==last.after || el("voiceChunk").value.trim()){
+  toast("ป้องกันข้อมูลหาย: แก้ข้อความรวม/ช่องพูดแล้ว จึงย้อนคืนอัตโนมัติไม่ได้");return;
+ }
+ voiceHistory.pop();voiceChunkCount=Math.max(0,voiceChunkCount-1);
+ el("noteText").value=last.before;
+ el("voiceChunk").value=last.chunk;
+ onSourceChanged();renderVoiceCapture();
+ toast("ย้อนคืนช่วงล่าสุดไปช่องพูดให้ตรวจใหม่ • ไม่บันทึกจริง");
+}
+function voiceStartBlank(){
+ const current=el("noteText").value;
+ if(current && current!==SAMPLE_NOTES.a && !window.confirm("เริ่มบันทึกว่าง? ข้อความรวมและผลวิเคราะห์ในหน้าทดลองจะถูกล้าง ไม่มีการสำรองหรือบันทึกถาวร"))return;
+ el("noteText").value="";el("voiceChunk").value="";
+ voiceHistory=[];voiceChunkCount=0;
+ invalidateParsedDraft("เริ่มบันทึกสมมติใหม่แล้ว");updateLength();renderVoiceCapture();
+ el("voiceChunk").focus();toast("เริ่มบันทึกว่างแล้ว — ใช้ข้อมูลสมมติเท่านั้น");
+}
+function clearVoiceTracking(){voiceHistory=[];voiceChunkCount=0;el("voiceChunk").value="";renderVoiceCapture()}
+el("voiceChunk").addEventListener("input",renderVoiceCapture);
+el("appendVoiceChunk").addEventListener("click",voiceAppend);
+el("undoVoiceChunk").addEventListener("click",voiceUndo);
+el("focusVoiceChunk").addEventListener("click",()=>{el("voiceChunk").focus();toast("แตะไมค์บนคีย์บอร์ด iPhone เพื่อใช้ Dictation")});
+el("newVoiceSession").addEventListener("click",voiceStartBlank);
+el("mockVoiceSample").addEventListener("click",()=>{el("voiceChunk").value="โรงพยาบาลทุ่งดาว พบคุณดารา ห้อง Lab คุยเรื่อง Ketone ช่วยติดตามใบเสนอราคาวันศุกร์";renderVoiceCapture();el("voiceChunk").focus();toast("ใส่ข้อความตัวอย่างสมมติในช่องพูดแล้ว ยังไม่ได้เพิ่ม")});
+function updateLength(){const note=el("noteText").value;el("noteLength").textContent=note.length.toLocaleString("th-TH")+" ตัวอักษร";}
+el("noteText").value=SAMPLE_NOTES.a;updateLength();renderVoiceCapture();
+
+// v8 visit planner. All records below are fictional fixtures embedded in this HTML.
+// No Calendar, CRM, Drive, TO-DO or Nexora connection. No storage or network IO.
+const MOCK_VISIT_PLAN=Object.freeze([
+ {id:"PLAN-DEMO-001",date:"2026-11-11",time:"09:00",end:"09:30",hospital:"รพ.ทุ่งดาว",department:"Lab",contact:"คุณดารา",role:"หัวหน้าแล็บ",products:["EDAN i20","Ketone"],context:"เคยคุยเรื่อง Ketone ในตัวอย่างบันทึก",openTasks:["ตรวจสอบสถานะใบเสนอราคา Ketone [ตัวอย่าง]"],objective:"สอบถามสถานะความสนใจและความต้องการใช้งาน",questions:["สนใจตรวจ Ketone ปริมาณเท่าไร?","มีข้อมูลที่ต้องการในใบเสนอราคาหรือไม่?"],prep:["เปิดข้อมูลสินค้าจำลองเพื่อทบทวนหัวข้อ","ตรวจคำถามเกี่ยวกับใบเสนอราคา"]},
+ {id:"PLAN-DEMO-002",date:"2026-11-11",time:"13:00",end:"13:30",hospital:"รพ.น้ำใส",department:"ICU",contact:"คุณมาลี",role:"พยาบาล",products:["QC"],context:"ตัวอย่างการสอบถามเกี่ยวกับ QC",openTasks:[],objective:"สอบถามประเด็นปัญหาการใช้งานและความต้องการติดตาม",questions:["มีปัญหา QC ที่ต้องการให้ช่วยเหลือหรือไม่?","ต้องการข้อมูลสนับสนุนเพิ่มเติมเรื่องใด?"],prep:["ทบทวนหัวข้อ QC ในตัวอย่าง"]},
+ {id:"PLAN-DEMO-003",date:"2026-11-12",time:"10:00",end:"10:30",hospital:"รพ.สายรุ้ง",department:"จัดซื้อ",contact:"พี่ดาว",role:"เจ้าหน้าที่จัดซื้อ",products:["Lactate"],context:"ตัวอย่างหัวข้อติดตามการเสนอผลิตภัณฑ์ Lactate",openTasks:["สอบถามผลพิจารณาเสนอราคา [ตัวอย่าง]"],objective:"อัปเดตสถานะเอกสารและผู้ประสานงาน",questions:["เอกสารเสนอราคาครบหรือไม่?","ขั้นตอนถัดไปอยู่ที่แผนกใด?"],prep:["ทบทวนรายการเอกสารจำลอง"]}
+]);
+let selectedPlanId=null;
+const localPrepChecks=Object.create(null);
+function prepChecked(v,i){return Boolean(localPrepChecks[v.id]?.includes(i))}
+function prepReadiness(v){return {done:v.prep.filter((_,i)=>prepChecked(v,i)).length,total:v.prep.length}}
+function prepChecklistHtml(v){
+ const status=prepReadiness(v);
+ const rows=v.prep.map((s,i)=>`<label class="checkrow"><input type="checkbox" class="prepCheck" data-prep-index="${i}" ${prepChecked(v,i)?"checked":""}/>${escapeHTML(s)}</label>`).join("");
+ return `<div class="prep-card" aria-label="เช็กลิสต์เตรียมเข้าพบจำลอง"><div class="prep-status" id="prepProgress">✅ เตรียมแล้ว ${status.done}/${status.total} หัวข้อ (Mock)</div>${rows}<button type="button" class="btn outline" id="resetPrepChecks">ล้างเช็กลิสต์เฉพาะรายการนี้</button><div class="hint">สถานะนี้เป็นการเตรียมตัวจำลอง ไม่ใช่การเข้าเยี่ยมเสร็จหรือการปิดงานจริง</div></div>`;
+}
+function togglePrepChecked(v,i,checked){
+ if(!v || i<0 || i>=v.prep.length)return;
+ const a=new Set(localPrepChecks[v.id]||[]);
+ if(checked)a.add(i);else a.delete(i);
+ localPrepChecks[v.id]=[...a].sort((x,y)=>x-y);
+ const r=prepReadiness(v);
+ el("prepProgress").textContent=`✅ เตรียมแล้ว ${r.done}/${r.total} หัวข้อ (Mock)`;
+}
+
+const mockRecord=id=>MOCK_VISIT_PLAN.find(v=>v.id===id)||null;
+function visiblePlans(){
+ const date=el("planDate").value;
+ const q=el("planSearch").value.trim().toLocaleLowerCase("th");
+ return MOCK_VISIT_PLAN.filter(v=>v.date===date && (!q||[v.hospital,v.contact,v.department,...v.products,...v.openTasks].join(" ").toLocaleLowerCase("th").includes(q)));
+}
+function planDateShift(step){
+ const date=el("planDate").value;if(!/^\d{4}-\d{2}-\d{2}$/.test(date))return;
+ const dt=new Date(date+"T12:00:00Z");if(Number.isNaN(dt.getTime()))return;
+ dt.setUTCDate(dt.getUTCDate()+step);
+ const next=dt.toISOString().slice(0,10);
+ if(next<el("planDate").min||next>el("planDate").max)return;
+ el("planDate").value=next;renderPlanner();
+}
+function planItemHtml(v){
+ return `<button type="button" class="visit-card" data-plan-id="${escapeHTML(v.id)}" aria-pressed="${v.id===selectedPlanId}"><div class="visit-card-top"><span class="visit-card-title">🏥 ${escapeHTML(v.hospital)}</span><span class="visit-time">${escapeHTML(v.time)}–${escapeHTML(v.end)}</span></div><div class="visit-meta">👤 ${escapeHTML(v.contact)} · ${escapeHTML(v.department)}<br>🎯 ${escapeHTML(v.objective)}</div><div class="planner-tags"><span>MOCK</span><span>${escapeHTML(v.products.join(" / "))}</span></div></button>`;
+}
+function plannerDetailHtml(v){
+ if(!v)return '<div class="empty">เลือกนัดหมายจำลองเพื่อดูข้อมูลประกอบการเข้าพบ</div>';
+ const field=(name,val)=>`<dl><dt>${escapeHTML(name)}</dt><dd>${escapeHTML(val)}</dd></dl>`;
+ const items=(title,arr)=>`<div class="visit-topic"><strong>${escapeHTML(title)}</strong>${arr.length?arr.map((a,i)=>`<div>${i+1}. ${escapeHTML(a)}</div>`).join(""):'<div>[ไม่มีงานติดตามในข้อมูลตัวอย่าง]</div>'}</div>`;
+ return `<div class="metric"><strong>VISIT BRIEF / DEMO</strong><span class="reviewstatus">NOT VERIFIED</span></div><h3>${escapeHTML(v.hospital)}</h3><div class="planner-data">${field("วันที่และเวลา",`${v.date} · ${v.time}–${v.end}`)}${field("บุคคล / ตำแหน่ง",`${v.contact} / ${v.role}`)}${field("แผนก",v.department)}${field("ผลิตภัณฑ์",v.products.join(", "))}${field("บริบทการพูดคุยจำลอง",v.context)}${field("เป้าหมายการเข้าพบ (ตัวอย่าง)",v.objective)}</div>${items("📌 ประเด็นติดตามจากข้อมูลจำลอง",v.openTasks)}${items("💬 คำถามที่เตรียมไว้",v.questions)}${items("✅ สิ่งที่เตรียมก่อนเข้าเยี่ยม",v.prep)}${prepChecklistHtml(v)}<div class="actionstack"><button type="button" class="btn secondary" id="copyPlanBrief">📋 คัดลอก Visit Brief สำหรับ ChatGPT</button><button type="button" class="btn outline" id="planToCapture">📝 เตรียมหัวข้อในหน้ารับข้อมูล (Mock)</button></div><div class="hint">ปุ่มคัดลอกไม่ส่งอัตโนมัติ ปุ่มเตรียมหัวข้อไม่ถือว่ามีการเข้าพบจริง</div>`;
+}
+function renderPlanner(){
+ const items=visiblePlans();if(!items.some(v=>v.id===selectedPlanId))selectedPlanId=items[0]?.id||null;
+ el("planCount").textContent=items.length+" รายการ (จำลอง)";
+ el("planList").innerHTML=items.length?items.map(planItemHtml).join(""):'<div class="card"><div class="empty">ไม่มีนัดหมายจำลองสำหรับวันที่หรือคำค้นนี้ — ไม่ใช่ผลตรวจจาก Calendar จริง</div></div>';
+ el("planDetail").innerHTML=plannerDetailHtml(mockRecord(selectedPlanId));
+ el("planList").querySelectorAll("[data-plan-id]").forEach(b=>b.addEventListener("click",()=>{selectedPlanId=b.dataset.planId;renderPlanner()}));
+ el("copyPlanBrief")?.addEventListener("click",()=>safeCopy(plannerToChatGPT(mockRecord(selectedPlanId))));
+ el("planToCapture")?.addEventListener("click",()=>loadPlanIntoCapture(mockRecord(selectedPlanId)));
+ const current=mockRecord(selectedPlanId);
+ el("planDetail").querySelectorAll(".prepCheck").forEach(b=>b.addEventListener("change",()=>togglePrepChecked(current,Number(b.dataset.prepIndex),b.checked)));
+ el("resetPrepChecks")?.addEventListener("click",()=>{if(!current)return;localPrepChecks[current.id]=[];renderPlanner();toast("ล้างเฉพาะเช็กลิสต์จำลองของรายการนี้แล้ว")});
+}
+function plannerToChatGPT(v){
+ if(!v)return "";
+ // User copies text themselves; this function does not transmit.
+ const lines=["📅 MOBILE UI LAB — VISIT BRIEF (ข้อมูลสมมติ / DRAFT)",
+  "ช่วยจัดทำแผนการเข้าพบลูกค้าด้วยข้อมูลตัวอย่างด้านล่างเท่านั้น และแสดงจุดที่ต้องยืนยัน",
+  "ห้ามแต่งข้อมูลจริง ห้ามสร้างหรือแก้ Calendar, CRM, DAYFLOW, TO-DO, Nexora หรือ Drive",
+  "ไม่ใช่บันทึกการเข้าพบจริง และไม่ได้ดึงข้อมูลจากฐานใด", "",
+  `วันที่: ${v.date} เวลา: ${v.time}–${v.end}`,`โรงพยาบาล: ${v.hospital} (สมมติ)`,
+  `ผู้ติดต่อ: ${v.contact} / ${v.role} / ${v.department}`,`สินค้า: ${v.products.join(", ")}`,
+  `บริบท: ${v.context}`,`เป้าหมาย: ${v.objective}`,
+  "ประเด็นติดตาม: "+(v.openTasks.join(" | ")||"[รอข้อมูล]"),
+  "คำถามเตรียมคุย: "+v.questions.join(" | "),
+  "สิ่งที่ต้องเตรียม: "+v.prep.join(" | "),
+  `เช็กลิสต์เตรียมเข้าพบที่ติ๊กในรอบนี้: ${prepReadiness(v).done}/${prepReadiness(v).total} (ไม่ใช่การเข้าเยี่ยมเสร็จ)`,
+  "สถานะ: MOCK / NOT_SENT / NO_SYNC / NOT_APPROVED"];
+ return lines.join("\n");
+}
+function loadPlanIntoCapture(v){
+ if(!v)return;
+ // Replacing notes is a destructive local UI action; confirm if user already typed a non-sample note.
+ const original=el("noteText").value;
+ if((original && original!==SAMPLE_NOTES.a) || el("voiceChunk").value.trim()){
+  if(!window.confirm("แทนที่ข้อความทดลองและช่วงพูดที่ยังไม่เพิ่มด้วยหัวข้อ Planner สมมติ? ข้อมูลเดิมยังไม่ได้บันทึก"))return;
+ }
+ // Distinguish a previsit template from a completed visit.
+ const next=`[ข้อมูลสมมติ — ยังไม่ได้เข้าเยี่ยมจริง]\nเตรียมเข้าพบ ${v.hospital} ผู้ติดต่อ ${v.contact} ตำแหน่ง ${v.role} แผนก ${v.department} สินค้า ${v.products.join(" และ ")}\nหัวข้อเตรียมคุย: ${v.objective}\nผลการสนทนาจริง: [รอข้อมูล]\nงานที่ลูกค้าขอจริง: [รอข้อมูล]`;
+ el("noteText").value=next;clearVoiceTracking();
+ // Existing v7 invalidation removes stale review, copy and save preview.
+ invalidateParsedDraft("🧪 นำหัวข้อแผนจำลองมาเตรียมกรอก — ยังไม่ใช่บันทึกเข้าพบจริง");
+ updateLength();
+ document.querySelectorAll(".sample").forEach(b=>b.classList.remove("selected"));
+ displayScreen("capture");toast("เตรียมหัวข้อสมมติในหน้ารับข้อมูลแล้ว — ไม่บันทึกจริง");
+}
+el("planDate").addEventListener("change",renderPlanner);
+el("planSearch").addEventListener("input",renderPlanner);
+el("planPrevDay").addEventListener("click",()=>planDateShift(-1));
+el("planNextDay").addEventListener("click",()=>planDateShift(1));
+
+async function inspectDeviceEnvironment(){
+ const lines=[];
+ const isLocal=(location.protocol==="http:" && ["localhost","127.0.0.1"].includes(location.hostname));
+ const secure=location.protocol==="https:" || isLocal;
+ const installed=Boolean((window.matchMedia&&window.matchMedia("(display-mode: standalone)").matches) || navigator.standalone===true);
+ lines.push(`${secure?"✅":"⚠️"} HTTPS / localhost: ${secure?"พร้อม":"ไม่มี HTTPS (ไฟล์ Preview ไม่เท่ากับเว็บที่ติดตั้งได้)"}`);
+ lines.push(`${installed?"✅":"ℹ️"} Home Screen standalone: ${installed?"เปิดในโหมด Standalone":"ยังไม่อยู่ในโหมด Standalone"}`);
+ lines.push(`${"serviceWorker" in navigator?"✅":"⚠️"} รองรับ Service Worker: ${"serviceWorker" in navigator?"มี API":"ไม่รองรับ/ถูกจำกัด"}`);
+ let registration=null;
+ try {if(secure&&"serviceWorker" in navigator)registration=await navigator.serviceWorker.getRegistration("./");}catch(_err){}
+ lines.push(`${registration?.active?"✅":"ℹ️"} Offline shell: ${registration?.active?"พบ Worker ทำงาน (แต่ยังไม่ได้พิสูจน์การโหลด Offline)":"ยังไม่พบ Worker ที่ทำงาน"}`);
+ lines.push(`${navigator.clipboard && window.isSecureContext?"✅":"ℹ️"} คัดลอกอัตโนมัติ: ${navigator.clipboard && window.isSecureContext?"มี Clipboard API":"อาจต้องคัดลอกด้วยตนเอง"}`);
+ lines.push(`${navigator.onLine?"ℹ️":"ℹ️"} การเชื่อมต่อที่เบราว์เซอร์แจ้ง: ${navigator.onLine?"Online":"Offline"} (ยังไม่ใช่ผล Offline test)`);
+ lines.push("🛡️ Mock only: ไม่มี Google/Nexora Save • ไม่มี API ภายนอก");
+ el("deviceCheckResults").textContent=lines.join("\n");
+}
+el("runDeviceCheck").addEventListener("click",inspectDeviceEnvironment);
+
+renderPlanner();
+
+document.querySelectorAll(".tab").forEach(b=>b.addEventListener("click",()=>displayScreen(b.dataset.screen)));
+document.querySelectorAll(".sample").forEach(b=>b.addEventListener("click",()=>{el("noteText").value=SAMPLE_NOTES[b.dataset.sample];clearVoiceTracking();document.querySelectorAll(".sample").forEach(x=>x.classList.toggle("selected",x===b));onSourceChanged()}));
+el("noteText").addEventListener("input",()=>{onSourceChanged();renderVoiceCapture()});
+el("clearInput").addEventListener("click",()=>{el("noteText").value="";clearVoiceTracking();invalidateParsedDraft("ข้อความทดลองถูกล้างแล้ว");updateLength();toast("ลบข้อความในหน้าทดลองแล้ว")});
+el("analyze").addEventListener("click",analyzeNote);
+REQUIRED_CONFIRMATIONS.forEach(id=>el(id).addEventListener("change",()=>{
+ if(reviewed && REQUIRED_CONFIRMATIONS.some(k=>!el(k).checked)){
+  el("savePreviewModal").style.display="none";el("savePreviewPayload").textContent="";reviewed=false;setReviewState();renderDraft();toast("ยกเลิก REVIEWED_MOCK แล้ว — ต้องยืนยันใหม่");
+ }
+}));
+el("markReviewed").addEventListener("click",()=>{if(!draft){toast("ยังไม่มี Draft");return}const missing=REQUIRED_CONFIRMATIONS.filter(id=>!el(id).checked);if(missing.length){toast("โปรดติ๊กตรวจทาน 4 ข้อให้ครบ (เฉพาะ Mock)");return}if(draft.hospital.resolution_status==="ambiguous-multiple"){toast("พบหลายโรงพยาบาล: แยกข้อความต้นฉบับแล้ววิเคราะห์ใหม่ก่อน");return}if(!el("field-hospital").value.trim()){toast("กรุณาระบุโรงพยาบาลใน Draft ก่อน");return}reviewed=true;setReviewState();renderDraft();toast("ตรวจทานด้วยตนเองใน Mock แล้ว — ไม่ใช่อนุมัติ Production")});
+const MOCK_TARGETS=Object.freeze({
+  MEETING_NOTES:{file_id:"NOT_CONFIGURED",sheet:"12 MEETING NOTES",role:"Meeting note",schema_status:"MOCK_SCHEMA_UNVERIFIED",requires_customer_id:true},
+  VISIT_LOG:{file_id:"NOT_CONFIGURED",sheet:"03 VISIT LOG",role:"Visit log",schema_status:"MOCK_SCHEMA_UNVERIFIED",requires_customer_id:true},
+  FOLLOW_UP:{file_id:"NOT_CONFIGURED",sheet:"04 FOLLOW-UP",role:"Follow-up",schema_status:"MOCK_SCHEMA_UNVERIFIED",requires_duplicate_check:true,requires_customer_id:true},
+  TODO:{file_id:"NOT_CONFIGURED",sheet:"TASKS MASTER",role:"Task",schema_status:"MOCK_SCHEMA_UNVERIFIED",requires_duplicate_check:true},
+  HANDOFF:{file_id:"NOT_CONFIGURED",sheet:"01 HANDOFF QUEUE",role:"Canonical handoff",schema_status:"MOCK_SCHEMA_UNVERIFIED",requires_publish_gate:true}
+});
+function renderSavePreview(){
+ // No side effects. Mock-only destination labels; no real provider IDs in public bundle.
+ if(!draft || !reviewed)return;
+ const extracted=readForm();if(!extracted)return;
+ const code=el("saveRoute").value;
+ const target=MOCK_TARGETS[code];
+ const holdReasons=["NO_REAL_FILE_ID_CONFIGURED","NEXORA_CUTOVER_HOLD","NEXORA_WRITER_HOLD","CRM_PRODUCTION_HARD_NO_GO","SOURCE_OF_TRUTH_NOT_CONFIRMED","DEVICE_TEST_PENDING","NO_REAL_DATA_APPROVED"];
+ if(target.requires_customer_id)holdReasons.push("CUSTOMER_ID_UNMATCHED");
+ if(target.requires_duplicate_check)holdReasons.push("DUPLICATE_CHECK_NOT_PERFORMED");
+ if(target.requires_publish_gate)holdReasons.push("PUBLISH_APPROVAL_AND_HASH_REQUIRED");
+ const payload={
+  schema:"mobile-ui-lab-v12-smart-review-preview",mode:"SIMULATION_ONLY",action:"PREVIEW_NOT_SAVE",route:code,
+  candidate_target:{account:"NOT_CONNECTED",file_id:"NOT_CONFIGURED",tab_name:target.sheet,role:target.role,headers_read_only_verified:false},
+  live_source:{account:"NOT_CONNECTED",source_file_id:"NOT_CONFIGURED",is_same_file_as_nexora_copy:"NOT_TESTED"},
+  record_data:extracted,
+  mapping_preview:{hospital_name:extracted.hospital,contacts:extracted.people,products:extracted.products,notes:extracted.conversation_summary,actions:extracted.actions,source_date:"[รอข้อมูล]",customer_id:"[รอข้อมูล]",record_id:"[รอข้อมูล]"},
+  hold_reasons:holdReasons,approval_status:"NOT_APPROVED",review_status:"REVIEWED_MOCK",
+  approved:false,submitted:false,synced:false,write_performed:false,source_text_included:false,
+  persistence:"NONE",readback_status:"NOT_APPLICABLE",requires_separate_approval:true
+ };
+ el("savePreviewPayload").textContent=JSON.stringify(payload,null,2);
+ el("targetWarning").textContent="สถานะ: HOLD — "+holdReasons.join(" · ");
+}
+function mockSavePreview(){
+ if(!draft || !reviewed){toast("ต้องตรวจทานข้อมูลสมมติครบก่อนดูตัวอย่างส่งต่อ");return}
+ if(draft.hospital.resolution_status==="ambiguous-multiple"){toast("หลายโรงพยาบาล: ต้องแยกต้นฉบับก่อน");return}
+ if(REQUIRED_CONFIRMATIONS.some(k=>!el(k).checked)){toast("การตรวจทานไม่ครบ");return}
+ const extracted=readForm();if(!extracted || !extracted.hospital){toast("ยังไม่มีชื่อโรงพยาบาล");return}
+ renderSavePreview();
+ el("savePreviewModal").style.display="flex";
+ el("closeSavePreview").focus();
+}
+el("saveRoute").addEventListener("change",renderSavePreview);
+el("previewDriveSave").addEventListener("click",mockSavePreview);
+el("closeSavePreview").addEventListener("click",()=>el("savePreviewModal").style.display="none");
+el("savePreviewModal").addEventListener("click",event=>{if(event.target===el("savePreviewModal"))el("savePreviewModal").style.display="none"});
+el("copyDayflowDraft").addEventListener("click",()=>copyStructuredHandoff("DAYFLOW"));
+el("copyNextMoveDraft").addEventListener("click",()=>copyStructuredHandoff("NEXT_MOVE"));
+el("copySummary").addEventListener("click",()=>safeCopy(draft?summaryDraft():""));
+el("copyForChatGPT").addEventListener("click",()=>safeCopy(chatGPTDraft()));
+el("addTemp").addEventListener("click",addTemporary);
+el("searchText").addEventListener("input",searchEntries);
+el("clearTemp").addEventListener("click",()=>{tempEntries=[];searchEntries();toast("ลบเฉพาะรายการ TEMP ในหน่วยความจำ")});
+el("editSource").addEventListener("click",()=>{displayScreen("capture");el("noteText").focus();toast("แก้ข้อความต้นฉบับแล้วกดวิเคราะห์ใหม่")});
+el("resetAll").addEventListener("click",()=>{tempEntries=[];draft=null;reviewed=false;el("noteText").value="";clearVoiceTracking();el("searchText").value="";el("planSearch").value="";el("planDate").value="2026-11-11";selectedPlanId=null;renderPlanner();invalidateParsedDraft("ข้อมูลทดลองถูกล้างแล้ว");el("pasteModal").style.display="none";el("savePreviewModal").style.display="none";el("savePreviewPayload").textContent="";REQUIRED_CONFIRMATIONS.forEach(id=>el(id).checked=false);updateLength();setReviewState();searchEntries();displayScreen("capture");toast("ล้างข้อมูลทดลองในหน้านี้แล้ว (ตัวอย่าง DEMO ยังอยู่)")});
+el("closeModal").addEventListener("click",()=>el("pasteModal").style.display="none");
+el("pasteModal").addEventListener("click",event=>{if(event.target===el("pasteModal"))el("pasteModal").style.display="none"});
+searchEntries();
+renderPlanner(); // v9 initial view: interactive demo Planner; mock fixtures only
+
+document.addEventListener("keydown",event=>{if(event.key==="Escape"){el("savePreviewModal").style.display="none";el("pasteModal").style.display="none"}});
+
+</script>
+<script id="pwa-prep">
+"use strict";
+// PWA static-shell only: no data caching beyond static HTML+icons+manifest.
+// No production connection, no analytics, no credential or user data persistence.
+// Service worker requires HTTPS or localhost. File previews are intentionally skipped.
+if ((location.protocol === "https:" || (location.protocol === "http:" && ["localhost","127.0.0.1"].includes(location.hostname))) && "serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("./sw.js", {scope:"./"}).catch(() => {
+      // Offline caching is optional; normal mock UI remains usable online.
+    });
+  });
+}
+</script>
+</body>
+</html>
